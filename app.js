@@ -20,13 +20,13 @@ const swaggerDefinition = JSON.parse(fs.readFileSync(swaggerDefinitionPath, 'utf
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
 
 // Set up database
-mongodb.initDb((err, mongodb) => {
-  if (err) {
-    console.err(err);
-  } else {
-    console.log(`Connected to DB and listening on ${port}`);
-  }
-});
+// mongodb.initDb((err, mongodb) => {
+//   if (err) {
+//     console.err(err);
+//   } else {
+//     console.log(`Connected to DB and listening on ${port}`);
+//   }
+// });
 
 // Define routes
 
