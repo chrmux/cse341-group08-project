@@ -6,12 +6,7 @@
         "version": "1.0.0",
         "contact": {
             "name": "CSE341-GROUP08 Project Github Repo Link",
-            "url": "https://github.com/chrmux/cse341-group08-project",
-            "email": "chrmux@gmail.com"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+            "url": "https://github.com/chrmux/cse341-group08-project"
         }
     },
     "servers": [
@@ -20,7 +15,7 @@
             "url": "http://localhost:8080/api-docs"
         },
         {
-            "url": "http://localhost:8080/api/v1/",
+            "url": "http://localhost:8080/api-docs/",
             "description": "Node.js Server (Development)"
         }
     ],
@@ -468,7 +463,7 @@
                                     },
                                     "href": {
                                         "type": "string",
-                                        "example": "/api/v1/users/user_id1"
+                                        "example": "/api-docs/users/user_id1"
                                     },
                                     "method": {
                                         "type": "string",
@@ -485,7 +480,7 @@
                                     },
                                     "href": {
                                         "type": "string",
-                                        "example": "/api/v1/users/user_id1"
+                                        "example": "/api-docs/users/user_id1"
                                     },
                                     "method": {
                                         "type": "string",
@@ -502,7 +497,7 @@
                                     },
                                     "href": {
                                         "type": "string",
-                                        "example": "/api/v1/users/user_id1"
+                                        "example": "/api-docs/users/user_id1"
                                     },
                                     "method": {
                                         "type": "string",
@@ -711,7 +706,7 @@
                                     "email": {
                                         "type": "string",
                                         "format": "email",
-                                        "example": "naimuddin374@gmail.com"
+                                        "example": "test@gmail.com"
                                     },
                                     "password": {
                                         "type": "string",
@@ -746,7 +741,7 @@
                                                 },
                                                 "name": {
                                                     "type": "string",
-                                                    "example": "Naim Uddin"
+                                                    "example": "New User"
                                                 },
                                                 "email": {
                                                     "type": "string",
