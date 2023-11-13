@@ -323,212 +323,121 @@
     "produces": ["application/json"],
     "paths": {
         "/auth/signup": {
-            "post": {
-                "summary": "Create a New User",
-                "tags": [
-                    "Auth"
-                ],
-                "requestBody": {
+                "post": {
+                    "tags":["Auth"],
+                  "summary": "User Registration",
+                  "description": "Register a new user account",
+                  "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "description": "The name of the user.",
-                                        "example": "Jerry"
-                                    },
-                                    "roles": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "enum": [
-                                                "admin",
-                                                "user"
-                                            ],
-                                            "default": "user"
-                                        }
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "description": "The password of the user.",
-                                        "example": "secret"
-                                    }
-                                },
-                                "required": [
-                                    "username",
-                                    "password"
-                                ]
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "string",
+                              "example": "john_doe"
+                            },
+                            "email": {
+                              "type": "string",
+                              "format": "email",
+                              "example": "john.doe@example.com"
+                            },
+                            "password": {
+                              "type": "string",
+                              "format": "password",
+                              "example": "password123"
                             }
+                          }
                         }
-                    }
-                },
-                "responses": {
+                      }
+                    },
+                  "responses": {
                     "201": {
-                        "description": "User registered successfully.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 201
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "User registered successfully"
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "signin": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "signin"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/auth/signin"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "POST"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                      "description": "User registered successfully",
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "message": "User registered successfully"
+                          }
                         }
+                      }
                     },
                     "400": {
-                        "$ref": "#/components/responses/400"
+                      "description": "Bad Request",
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": "Invalid input parameters"
+                          }
+                        }
+                      }
                     },
                     "409": {
-                        "description": "Conflict",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 409
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "User with this email already exists."
-                                        }
-                                    }
-                                }
-                            }
+                      "description": "Conflict",
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": "User with this email already exists"
+                          }
                         }
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
+                      }
                     }
+                  }
                 }
-            }
-        },
+              }
+            },
 
         "/auth/login": {
             "post": {
+                "tags":["Auth"],
                 "summary": "User Login",
-                "tags": [
-                    "Auth"
-                ],
+                "description": "Authenticate and obtain an access token",
                 "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "username": {
-                                        "type": "string",
-                                        "example": "test"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "example": "pass1234"
-                                    }
-                                }
-                            }
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "string",
+                            "example": "john_doe"
+                          },
+                          "password": {
+                            "type": "string",
+                            "format": "password",
+                            "example": "password123"
+                          }
                         }
+                      }
                     }
+                  }
                 },
                 "responses": {
-                    "200": {
-                        "description": "User Login Successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 200
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Login successful"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "username": {
-                                                    "type": "string",
-                                                    "example": "New User"
-                                                },
-                                                "password": {
-                                                    "type": "String",
-                                                    "example": "password"
-                                                },
-                                                "token": {
-                                                    "type": "string",
-                                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                                                }
-                                            }
-                                        }
-
-                                    }
-                                }
-                            }
+                  "200": {
+                    "description": "Successful login",
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
                         }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 401
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Authentication failed. Invalid credentials."
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                      }
                     }
+                  },
+                  "401": {
+                    "description": "Unauthorized",
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "error": "Invalid credentials"
+                        }
+                      }
+                    }
+                  }
                 }
-            }
-        },
+              }
+            },
         "/recipes": {
             "post": {
                 "tags": ["Recipe"],
@@ -639,6 +548,22 @@
                 "description": "Find one from the database",
                 "operationId": "getRecipeById",
                 "produces": ["application/json"],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "Id of the recipe",
+                    "type": "String"
+
+                },
+                {
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                }
+            ],
                 "responses": {
                     "200": {
                         "description": "Recipe has been found",
@@ -663,6 +588,22 @@
             "description": "Delete Recipe from the database",
             "operationId": "deleteRecipe",
             "produces": ["application/json"],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "required": "true",
+                "description": "Id of the recipe",
+                "type": "String"
+
+            },
+            {
+                "name": "authorization",
+                "description": "Access token to authorize the user",
+                "in": "header",
+                "type": "string",
+                "required": true
+            }
+        ],
             "responses": {
                 "200": {
                     "description": "Recipe has deleted",
