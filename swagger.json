@@ -9,18 +9,16 @@
             "url": "https://github.com/chrmux/cse341-group08-project"
         }
     },
-    "servers": [
-        {
-            "description": "Swagger API",
-            "url": "http://localhost:8080/api-docs"
+    "servers": [{
+            "url": "http://localhost:8080/api-docs",
+            "description": "Local development server"
         },
         {
-            "url": "http://localhost:8080/api-docs/",
-            "description": "Node.js Server (Development)"
+            "url": "https://cse341-group08-project.onrender.com/api-docs",
+            "description": "Live server"
         }
     ],
-    "tags": [
-        {
+    "tags": [{
             "name": "Auth",
             "description": "Authentication Endpoints (Public)"
         },
@@ -31,6 +29,10 @@
         {
             "name": "Ingredient",
             "description": "Ingredient Endpoints (Public + Private)"
+        },
+        {
+            "name": "Photo",
+            "description": "Photo Endpoints (Public + Private)"
         },
         {
             "name": "User",
@@ -142,143 +144,9 @@
                         }
                     }
                 }
-            },
-            "QueryParamValidationError": {
-                "description": "Bad Request - Query Parameter Validation Error",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "number",
-                                    "example": 400
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "Bad Request - Query Parameter Validation Error"
-                                },
-                                "errors": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "parameter": {
-                                                "type": "string",
-                                                "example": "page"
-                                            },
-                                            "message": {
-                                                "type": "string",
-                                                "example": "Page number must be a positive integer."
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "DataDeletedResponse": {
-                "description": "Data Deleted Successfully",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "number",
-                                    "example": 200
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "Your Requested Data Deleted Successfully"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "SearchNotFoundResponse": {
-                "description": "NOT_FOUND",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "number",
-                                    "example": 404
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "No Item match the provided search criteria."
-                                }
-                            }
-                        }
-                    }
-                }
             }
         },
         "parameters": {
-            "pageParam": {
-                "in": "query",
-                "name": "page",
-                "description": "Page number (default: 1)",
-                "schema": {
-                    "type": "integer",
-                    "format": "int32",
-                    "minimum": 1,
-                    "default": 1,
-                    "example": 1
-                },
-                "required": true
-            },
-            "limitParam": {
-                "in": "query",
-                "name": "limit",
-                "description": "Number of items per page (default: 10)",
-                "schema": {
-                    "type": "integer",
-                    "format": "int32",
-                    "minimum": 1,
-                    "default": 10,
-                    "example": 10
-                },
-                "required": true
-            },
-            "sortParam": {
-                "in": "query",
-                "name": "sort",
-                "description": "Sorting criteria (e.g., updatedAt)",
-                "schema": {
-                    "type": "string",
-                    "example": "updatedAt"
-                },
-                "required": true
-            },
-            "searchParam": {
-                "in": "query",
-                "name": "search",
-                "description": "Search term to filter items by search value (optional)",
-                "schema": {
-                    "type": "string"
-                }
-            },
-            "sortTypeParam": {
-                "in": "query",
-                "name": "sort_type",
-                "description": "Sorting By listing order",
-                "schema": {
-                    "type": "string",
-                    "enum": [
-                        "asc",
-                        "dsc"
-                    ],
-                    "example": "dsc"
-                },
-                "required": true
-            },
             "IdParams": {
                 "required": true,
                 "in": "path",
@@ -287,15 +155,6 @@
                 "schema": {
                     "$ref": "#/components/schemas/Id"
                 }
-            },
-            "ExpandParams": {
-                "in": "query",
-                "name": "Expand",
-                "description": " Expand Data With Expand keys",
-                "schema": {
-                    "type": "string"
-                },
-                "example": "creator"
             }
         },
         "schemas": {
@@ -305,112 +164,72 @@
                     "ingredientId": {
                         "$ref": "#/components/schemas/Id"
                     },
-                    "name": {
+                    "description": {
                         "type": "string",
-                        "example": "Chicken"
+                        "example": "any"
                     },
-                    "quantity": {
-                        "type": "string",
-                        "example": "1 pcs"
-                    },
-                    "ingredientLink": {
+                    "category": {
                         "type": "object",
-                        "properties": {
-                            "href": {
-                                "type": "string",
-                                "example": "/ingredients/ingredient_id1"
-                            },
-                            "rel": {
-                                "type": "string",
-                                "example": "ingredient"
-                            }
-                        }
+                        "example": "any"
                     }
                 }
             },
-            "Creator": {
+            "Recipe": {
                 "type": "object",
                 "properties": {
                     "userId": {
-                        "$ref": "#/components/schemas/Id"
+                        "$ref": "#/components/schemas/Recipe"
                     },
-                    "userLink": {
-                        "type": "object",
-                        "properties": {
-                            "href": {
-                                "type": "string",
-                                "example": "/user/user_id1"
-                            },
-                            "rel": {
-                                "type": "string",
-                                "example": "user"
+                    "recipe info": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "photo": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "ingredients": {
+                                    "type": "string"
+                                },
+                                "instruction": {
+                                    "type": "string"
+                                },
+                                "creator": {
+                                    "type": "array"
+                                    
+                                },
+                                "keywords": {
+                                    "type": "string"
+                                },
+                                "culture": {
+                                    "type": "string"
+                                },
+                                "level": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                }
                             }
                         }
                     }
                 }
             },
-            "Pagination": {
+            "Photo": {
                 "type": "object",
                 "properties": {
-                    "total": {
-                        "type": "integer",
-                        "example": 50
+                    "objectId": {
+                        "$ref": "#/components/schemas/Photo"
                     },
-                    "limit": {
-                        "type": "integer",
-                        "example": 10
-                    },
-                    "page": {
-                        "type": "integer",
-                        "example": 2
-                    },
-                    "pages": {
-                        "type": "integer",
-                        "example": 5
-                    }
-                }
-            },
-            "PaginationLinks": {
-                "type": "object",
-                "properties": {
-                    "self": {
+                    "title": {
                         "type": "object",
-                        "properties": {
-                            "href": {
-                                "type": "string",
-                                "example": "/items?page=2&limit=10&sort=-createdAt&search=Chicken"
-                            },
-                            "rel": {
-                                "type": "string",
-                                "example": "self"
-                            }
-                        }
+                        "example": "any"
                     },
-                    "prev": {
-                        "type": "object",
-                        "properties": {
-                            "href": {
-                                "type": "string",
-                                "example": "/items?page=1&limit=10&sort=-createdAt&search=Chicken"
-                            },
-                            "rel": {
-                                "type": "string",
-                                "example": "prev"
-                            }
-                        }
-                    },
-                    "next": {
-                        "type": "object",
-                        "properties": {
-                            "href": {
-                                "type": "string",
-                                "example": "/items?page=3&limit=10&sort=-createdAt&search=Chicken"
-                            },
-                            "rel": {
-                                "type": "string",
-                                "example": "next"
-                            }
-                        }
+                    "photoUrl": {
+                        "type": "string",
+                        "example": "any"
                     }
                 }
             },
@@ -418,17 +237,20 @@
                 "type": "string",
                 "example": "550e8400-e29b-41d4-a716-446655440000"
             },
+            "Name": {
+                "type": "string",
+                "example": "Pork Adobo"
+            },
+            "keyword": {
+                "type": "string",
+                "example": "any"
+            },
             "User": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "type": "string",
                         "example": "user123"
-                    },
-                    "email": {
-                        "type": "string",
-                        "format": "email",
-                        "example": "user@example.com"
                     },
                     "roles": {
                         "type": "array",
@@ -441,71 +263,9 @@
                             "default": "user"
                         }
                     },
-                    "createdAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "timestamp"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "timestamp"
-                    },
-                    "links": {
-                        "type": "object",
-                        "properties": {
-                            "self": {
-                                "type": "object",
-                                "properties": {
-                                    "rel": {
-                                        "type": "string",
-                                        "example": "self"
-                                    },
-                                    "href": {
-                                        "type": "string",
-                                        "example": "/api-docs/users/user_id1"
-                                    },
-                                    "method": {
-                                        "type": "string",
-                                        "example": "GET"
-                                    }
-                                }
-                            },
-                            "update_profile": {
-                                "type": "object",
-                                "properties": {
-                                    "rel": {
-                                        "type": "string",
-                                        "example": "update_profile"
-                                    },
-                                    "href": {
-                                        "type": "string",
-                                        "example": "/api-docs/users/user_id1"
-                                    },
-                                    "method": {
-                                        "type": "string",
-                                        "example": "PUT"
-                                    }
-                                }
-                            },
-                            "delete_profile": {
-                                "type": "object",
-                                "properties": {
-                                    "rel": {
-                                        "type": "string",
-                                        "example": "delete_profile"
-                                    },
-                                    "href": {
-                                        "type": "string",
-                                        "example": "/api-docs/users/user_id1"
-                                    },
-                                    "method": {
-                                        "type": "string",
-                                        "example": "DELETE"
-                                    }
-                                }
-                            }
-                        }
+                    "password": {
+                        "type": "String",
+                        "example": "any"
                     }
                 }
             },
@@ -515,11 +275,6 @@
                     "name": {
                         "type": "string",
                         "example": "new_user123"
-                    },
-                    "email": {
-                        "type": "string",
-                        "format": "email",
-                        "example": "new_user@example.com"
                     },
                     "roles": {
                         "type": "array",
@@ -539,10 +294,6 @@
                 "properties": {
                     "name": {
                         "type": "string"
-                    },
-                    "email": {
-                        "type": "string",
-                        "format": "email"
                     },
                     "roles": {
                         "type": "array",
@@ -567,1717 +318,921 @@
             }
         }
     },
+    "schemes": ["http", "https"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
     "paths": {
         "/auth/signup": {
-            "post": {
-                "summary": "Create a New User",
-                "tags": [
-                    "Auth"
-                ],
-                "requestBody": {
+                "post": {
+                    "tags":["Auth"],
+                  "summary": "User Registration",
+                  "description": "Register a new user account",
+                  "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "description": "The name of the user.",
-                                        "example": "Jerry"
-                                    },
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email",
-                                        "description": "The email address of the user.",
-                                        "example": "chrmux@gmail.com"
-                                    },
-                                    "roles": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "enum": [
-                                                "admin",
-                                                "user"
-                                            ],
-                                            "default": "user"
-                                        }
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "description": "The password of the user.",
-                                        "example": "secret"
-                                    }
-                                },
-                                "required": [
-                                    "name",
-                                    "email",
-                                    "password"
-                                ]
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "string",
+                              "example": "john_doe"
+                            },
+                            "email": {
+                              "type": "string",
+                              "format": "email",
+                              "example": "john.doe@example.com"
+                            },
+                            "password": {
+                              "type": "string",
+                              "format": "password",
+                              "example": "password123"
                             }
+                          }
                         }
-                    }
-                },
-                "responses": {
+                      }
+                    },
+                  "responses": {
                     "201": {
-                        "description": "User registered successfully.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 201
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "User registered successfully"
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "signin": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "signin"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/auth/signin"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "POST"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                      "description": "User registered successfully",
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "message": "User registered successfully"
+                          }
                         }
+                      }
                     },
                     "400": {
-                        "$ref": "#/components/responses/400"
+                      "description": "Bad Request",
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": "Invalid input parameters"
+                          }
+                        }
+                      }
                     },
                     "409": {
-                        "description": "Conflict",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 409
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "User with this email already exists."
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
-                    }
-                }
-            }
-        },
-        "/auth/signin": {
-            "post": {
-                "summary": "User Login",
-                "tags": [
-                    "Auth"
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
+                      "description": "Conflict",
+                      "content": {
                         "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email",
-                                        "example": "test@gmail.com"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "example": "pass1234"
-                                    }
-                                }
-                            }
+                          "example": {
+                            "error": "User with this email already exists"
+                          }
                         }
+                      }
                     }
+                  }
+                }
+              }
+            },
+
+        "/auth/login": {
+            "post": {
+                "tags":["Auth"],
+                "summary": "User Login",
+                "description": "Authenticate and obtain an access token",
+                "requestBody": {
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "string",
+                            "example": "john_doe"
+                          },
+                          "password": {
+                            "type": "string",
+                            "format": "password",
+                            "example": "password123"
+                          }
+                        }
+                      }
+                    }
+                  }
                 },
                 "responses": {
-                    "200": {
-                        "description": "User Login Successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 200
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Login successful"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "New User"
-                                                },
-                                                "email": {
-                                                    "type": "string",
-                                                    "format": "email"
-                                                },
-                                                "token": {
-                                                    "type": "string",
-                                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "self": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "self"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/auth/signin"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "POST"
-                                                        }
-                                                    }
-                                                },
-                                                "logout": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "logout"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/auth/logout"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "POST"
-                                                        }
-                                                    }
-                                                },
-                                                "profile": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "profile"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/users/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "GET"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                  "200": {
+                    "description": "Successful login",
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
                         }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 401
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Authentication failed. Invalid credentials."
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                      }
                     }
+                  },
+                  "401": {
+                    "description": "Unauthorized",
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "error": "Invalid credentials"
+                        }
+                      }
+                    }
+                  }
                 }
-            }
-        },
+              }
+            },
         "/recipes": {
             "post": {
-                "summary": "Create a Recipe",
-                "tags": [
-                    "Recipe"
-                ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "title": {
-                                        "type": "string"
-                                    },
-                                    "ingredients": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "ingredient": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "quantity": {
-                                                    "type": "string",
-                                                    "example": "2 breasts"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "instructions": {
-                                        "type": "string",
-                                        "example": "Boil water"
-                                    },
-                                    "creator": {
-                                        "type": "string",
-                                        "example": "user_id"
+                "tags": ["Recipe"],
+                "summary": "API Endpoint for create Recipe",
+                "description": "Create new Recipe in database",
+                "operationId": "createRecipe",
+                "parameters": [{
+                        "name": "recipe",
+                        "description": "Recipe params to create new recipe",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "photo": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "ingredients": {
+                                    "type": "string",
+                                    "example": "any"
+                                },
+                                "instruction": {
+                                    "type": "string",
+                                    "example": "Boil water"
+                                },
+                                "creator": {
+                                    "type": "string",
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Id"
                                     }
+                                },
+                                "keywords": {
+                                    "type": "string",
+                                    "example": "Boil water"
+                                },
+                                "culture": {
+                                    "type": "string",
+                                    "example": "culture"
+                                },
+                                "level": {
+                                    "type": "string",
+                                    "example": "level"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "example": "description"
                                 }
                             }
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "description": "Access token to authorize the user",
+                        "in": "header",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "New Recipe Created",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Recipe"],
+                "summary": "API Endpoint to find all Recipe",
+                "description": "Find all Recipe from the database",
+                "operationId": "getallRecipe",
+                "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                }],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "All the Recipe",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
                         }
                     }
                 },
-                "responses": {
-                    "201": {
-                        "description": "Recipe created successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer",
-                                            "format": "int32",
-                                            "example": 201
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "title": {
-                                                    "type": "string",
-                                                    "example": "Chicken Alfredo"
-                                                },
-                                                "ingredients": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "$ref": "#/components/schemas/Ingredient"
-                                                    }
-                                                },
-                                                "instructions": {
-                                                    "type": "string",
-                                                    "example": "Boil water"
-                                                },
-                                                "creator": {
-                                                    "$ref": "#/components/schemas/Creator"
-                                                },
-                                                "createdAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updatedAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "self": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "self"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "GET"
-                                                        }
-                                                    }
-                                                },
-                                                "edit": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "edit"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "PUT"
-                                                        }
-                                                    }
-                                                },
-                                                "delete": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "delete"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "DELETE"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
-                    }
-                }
-            },
-            "get": {
-                "summary": "This End Point Responsible for Retrieve All Recipes",
-                "tags": [
-                    "Recipe"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/pageParam"
-                    },
-                    {
-                        "$ref": "#/components/parameters/limitParam"
-                    },
-                    {
-                        "$ref": "#/components/parameters/sortParam"
-                    },
-                    {
-                        "$ref": "#/components/parameters/searchParam"
-                    },
-                    {
-                        "$ref": "#/components/parameters/sortTypeParam"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Retrieve All Recipes",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "recipes": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "id": {
-                                                                "type": "string",
-                                                                "example": "550e8400-e29b-41d4-a716-446655440000"
-                                                            },
-                                                            "title": {
-                                                                "type": "string",
-                                                                "example": "Chicken Alfredo"
-                                                            },
-                                                            "ingredients": {
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "$ref": "#/components/schemas/Ingredient"
-                                                                }
-                                                            },
-                                                            "instructions": {
-                                                                "type": "string",
-                                                                "example": "boil egg"
-                                                            },
-                                                            "creator": {
-                                                                "$ref": "#/components/schemas/Creator"
-                                                            },
-                                                            "recipeLink": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "href": {
-                                                                        "type": "string",
-                                                                        "example": "/recipes/recipe_id1"
-                                                                    },
-                                                                    "rel": {
-                                                                        "type": "string",
-                                                                        "example": "self"
-                                                                    }
-                                                                }
-                                                            },
-                                                            "createdAt": {
-                                                                "type": "string",
-                                                                "format": "date-time"
-                                                            },
-                                                            "updatedAt": {
-                                                                "type": "string",
-                                                                "format": "date-time"
-                                                            },
-                                                            "pagination": {
-                                                                "$ref": "#/components/schemas/Pagination"
-                                                            },
-                                                            "links": {
-                                                                "$ref": "#/components/schemas/PaginationLinks"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/QueryParamValidationError"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/SearchNotFoundResponse"
-                    }
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
                 }
             }
         },
-        "/recepies/id": {
-            "put": {
-                "summary": "This End Point Responsible for Update Recipe Data.",
-                "tags": [
-                    "Recipe"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/IdParams"
-                    }
-                ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Recipe Updated successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer",
-                                            "format": "int32",
-                                            "example": 200
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "title": {
-                                                    "type": "string",
-                                                    "example": "Chicken Alfredo"
-                                                },
-                                                "ingredients": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "$ref": "#/components/schemas/Ingredient"
-                                                    }
-                                                },
-                                                "instructions": {
-                                                    "type": "string",
-                                                    "example": "Boil water"
-                                                },
-                                                "creator": {
-                                                    "$ref": "#/components/schemas/Creator"
-                                                },
-                                                "createdAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updatedAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "self": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "self"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "GET"
-                                                        }
-                                                    }
-                                                },
-                                                "edit": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "edit"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "PUT"
-                                                        }
-                                                    }
-                                                },
-                                                "delete": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "delete"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "DELETE"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "201": {
-                        "description": "Recipe created successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer",
-                                            "format": "int32",
-                                            "example": 201
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "title": {
-                                                    "type": "string",
-                                                    "example": "Chicken Alfredo"
-                                                },
-                                                "ingredients": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "$ref": "#/components/schemas/Ingredient"
-                                                    }
-                                                },
-                                                "instructions": {
-                                                    "type": "string",
-                                                    "example": "Boil water"
-                                                },
-                                                "creator": {
-                                                    "$ref": "#/components/schemas/Creator"
-                                                },
-                                                "createdAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updatedAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "self": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "self"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "PUT"
-                                                        }
-                                                    }
-                                                },
-                                                "get": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "edit"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "GET"
-                                                        }
-                                                    }
-                                                },
-                                                "delete": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "delete"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "DELETE"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
-                    }
-                }
-            },
-            "delete": {
-                "summary": "This End Point Responsible For Delete Item",
-                "tags": [
-                    "Recipe"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/IdParams"
-                    }
-                ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/DataDeletedResponse"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
-                    }
-                }
-            },
+        "/recipe/{id}":{
             "get": {
-                "summary": "This End Point Responsible For Retrieve Item",
-                "tags": [
-                    "Recipe"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/IdParams"
-                    },
-                    {
-                        "$ref": "#/components/parameters/ExpandParams"
-                    }
-                ],
+                "tags": ["Recipe"],
+                "summary": "Fetch item by Id",
+                "description": "Find one from the database",
+                "operationId": "getRecipeById",
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "Id of the recipe",
+                    "type": "String"
+
+                },
+                {
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                }
+            ],
                 "responses": {
                     "200": {
-                        "description": "Recipe Updated successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer",
-                                            "format": "int32",
-                                            "example": 200
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "title": {
-                                                    "type": "string",
-                                                    "example": "Chicken Alfredo"
-                                                },
-                                                "ingredients": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "$ref": "#/components/schemas/Ingredient"
-                                                    }
-                                                },
-                                                "instructions": {
-                                                    "type": "string",
-                                                    "example": "Boil water"
-                                                },
-                                                "creator": {
-                                                    "$ref": "#/components/schemas/Creator"
-                                                },
-                                                "createdAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updatedAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "self": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "self"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "GET"
-                                                        }
-                                                    }
-                                                },
-                                                "edit": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "edit"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "PUT"
-                                                        }
-                                                    }
-                                                },
-                                                "delete": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "delete"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "example": "/recipes/recipe_id1"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "DELETE"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                        "description": "Recipe has been found",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
                         }
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
                     }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
+                }
+            },
+    "delete": {
+            "tags": ["Recipe"],
+            "summary": "API Endpoint to delete the Recipe",
+            "description": "Delete Recipe from the database",
+            "operationId": "deleteRecipe",
+            "produces": ["application/json"],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "required": "true",
+                "description": "Id of the recipe",
+                "type": "String"
+
+            },
+            {
+                "name": "authorization",
+                "description": "Access token to authorize the user",
+                "in": "header",
+                "type": "string",
+                "required": true
+            }
+        ],
+            "responses": {
+                "200": {
+                    "description": "Recipe has deleted",
+                    "schema": {
+                        "$ref": "#/components/schemas/Id"
+                    }
+                }
+            },
+            "401": {
+                "$ref": "#/components/responses/401"
+            },
+            "404": {
+                "$ref": "#/components/responses/404"
+            },
+            "500": {
+                "$ref": "#/components/responses/500"
+            }
+        },
+        "put": {
+            "tags": ["Recipe"],
+            "summary": "API Endpoint for update Recipe",
+            "description": "Update the existing Recipe in database",
+            "operationId": "updateRecipe",
+            "parameters": [{
+                "name": "recipe",
+                "description": "Recipe params to update the recipe",
+                "in": "body",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "$ref": "#/components/schemas/Id"
+                        },
+                        "photo": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "ingredients": {
+                            "type": "string",
+                            "example": "any"
+                        },
+                        "instruction": {
+                            "type": "string",
+                            "example": "Boil water"
+                        },
+                        "creator": {
+                            "type": "string",
+                            "schema": {
+                                "$ref": "#/components/schemas/Id"
+                            }
+                        },
+                        "keywords": {
+                            "type": "string",
+                            "example": "Boil water"
+                        },
+                        "culture": {
+                            "type": "string",
+                            "example": "culture"
+                        },
+                        "level": {
+                            "type": "string",
+                            "example": "level"
+                        },
+                        "description": {
+                            "type": "string",
+                            "example": "description"
+                        }
+                    }
+                }
+            }],
+            "produces": ["application/json"],
+            "responses": {
+                "200": {
+                    "description": "Recipe has been Updated",
+                    "schema": {
+                        "$ref": "#"
+                    }
+                }
+            },
+            "401": {
+                "$ref": "#/components/responses/401"
+            },
+            "404": {
+                "$ref": "#/components/responses/404"
+            },
+            "500": {
+                "$ref": "#/components/responses/500"
+            }
+        }
+    },
+        "/recipes/{name}": {
+            "parameters": [{
+                    "name": "name",
+                    "in": "path",
+                    "required": "true",
+                    "description": "name of the recipe",
+                    "type": "String"
+
+                },
+                {
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "tags": ["Recipe"],
+                "summary": "Fetch item by name",
+                "description": "Find one from the database",
+                "operationId": "getRecipeByName",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Recipe has been found",
+                        "schema": {
+                            "$ref": "#/components/schemas/Name"
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
+                }
+            }
+        },
+        "/recipes/{keyword}": {
+            "parameters": [{
+                    "name": "keyword",
+                    "in": "path",
+                    "required": "true",
+                    "description": "keyword of the recipe",
+                    "type": "String"
+
+                },
+                {
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "tags": ["Recipe"],
+                "summary": "Fetch item by keyword",
+                "description": "Find one from the database",
+                "operationId": "getRecipeByKeyword",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Recipe has been found",
+                        "schema": {
+                            "$ref": "#/components/schemas/Keyword"
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
                 }
             }
         },
         "/ingredients": {
             "post": {
-                "summary": "This End Point Responsible for create ingredient",
-                "tags": [
-                    "Ingredient"
-                ],
-                "security": [
+                "tags": ["Ingredient"],
+                "summary": "API Endpoint for create Ingredients",
+                "description": "Create new Ingredient in database",
+                "parameters": [{
+
+                        "name": "authorization",
+                        "description": "Access token to authorize the user",
+                        "in": "header",
+                        "type": "string",
+                        "required": true
+                        
+                    },
                     {
-                        "bearerAuth": []
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "Tomato"
-                                    },
-                                    "description": {
-                                        "type": "string",
-                                        "example": "A red, juicy fruit often used in salads and sauces."
-                                    },
-                                    "category": {
-                                        "type": "string",
-                                        "enum": [
-                                            "Vegetable",
-                                            "Fruit",
-                                            "Protein",
-                                            "Grain",
-                                            "Dairy",
-                                            "Other"
-                                        ]
-                                    }
+                        "name": "ingredient",
+                        "description": "Ingredient params to create new ingredient",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "category": {
+                                    "type": "string"
                                 }
                             }
+                        }
+                    }
+                ],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "New Ingredient Created",
+                        "schema": {
+                            "$ref": "#/components/schemas/Ingredients"
                         }
                     }
                 },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
+                }
+            },
+            "get": {
+                "tags": ["Ingredient"],
+                "summary": "API Endpoint to find all ingredients",
+                "description": "Find all ingredients from the database",
+                "operationId": "getAllIngredients",
+                "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                }],
+                "produces": ["application/json"],
                 "responses": {
-                    "201": {
-                        "description": "Ingredient Created Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 201
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "Tomato"
-                                                },
-                                                "description": {
-                                                    "type": "string",
-                                                    "example": "A red, juicy fruit often used in salads and sauces."
-                                                },
-                                                "category": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "Vegetable",
-                                                        "Fruit",
-                                                        "Protein",
-                                                        "Grain",
-                                                        "Dairy",
-                                                        "Other"
-                                                    ]
-                                                },
-                                                "createdAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updatedAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "self": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "self"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "GET"
-                                                        }
-                                                    }
-                                                },
-                                                "edit": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "edit"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "PUT"
-                                                        }
-                                                    }
-                                                },
-                                                "delete": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "delete"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "DELETE"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+                    "200": {
+                        "description": "All the Ingredients",
+                        "schema": {
+                            "$ref": "#/components/schemas/Ingredients"
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
+                }
+            }
+        },
+        "/ingredients/{id}": {
+            "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "id of the Ingredient",
+                    "type": "String"
+                }
+            ],
+            "get": {
+                "tags": ["Ingredient"],
+                "summary": "API Endpoint to find single Ingredient",
+                "description": "Find one from the database",
+                "operationId": "getIngredientsById",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Ingredient has been found",
+                        "schema": {
+                            "$ref": "#/components/schemas/Ingredients"
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
+                }
+            },
+            "delete": {
+                "tags": ["Ingredient"],
+                "summary": "API Endpoint to delete the ingredient",
+                "description": "Delete ingredient from the database",
+                "operationId": "deleteIngredient",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Ingredient has deleted",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/404"
+                }
+            },
+            "put": {
+                "tags": ["Ingredient"],
+                "summary": "API Endpoint for update ingredient",
+                "description": "Update the existing ingredient in database",
+                "operationId": "updateIngredient",
+                "parameters": [{
+                    "name": "ingredient",
+                    "description": "Ingredient params to update the ingredient",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "#/components/schemas/Id"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "data": {
+                                "type": "string"
+                            },
+                            "category": {
+                                "type": "string",
+                                "example": "any"
+                            }
+                            
+                        }
+                    }
+                }],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Ingredient has been Updated",
+                        "schema": {
+                            "$ref": "#/components/schemas/Ingredients"
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
+                }
+            }
+        },
+        "/photo": {
+            "post": {
+                "tags": ["Photo"],
+                "summary": "API Endpoint for create Photo",
+                "description": "Create new Photo in database",
+                "operationId": "createPhoto",
+                "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true                        
+                    },
+                    {
+                        "name": "photo",
+                        "description": "Photo params to create new photo",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string"
+                                },
+                                "photoUrl": {
+                                    "type": "string"
                                 }
                             }
                         }
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
+                    }
+                ],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "New Photo Created",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
                     }
                 }
             },
             "get": {
-                "summary": "This End Point Responsible For Fetch All ingredients Data",
-                "tags": [
-                    "Ingredient"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/pageParam"
-                    },
-                    {
-                        "$ref": "#/components/parameters/limitParam"
-                    },
-                    {
-                        "$ref": "#/components/parameters/sortParam"
-                    },
-                    {
-                        "$ref": "#/components/parameters/searchParam"
-                    },
-                    {
-                        "$ref": "#/components/parameters/sortTypeParam"
-                    }
-                ],
+                "tags": ["Photo"],
+                "summary": "API Endpoint to find all Photo",
+                "description": "Find all Photo from the database",
+                "operationId": "getallPhoto",
+                "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                }],
+                "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "ingredients Data List Get Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer",
-                                            "format": "int32",
-                                            "example": 200
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "id": {
-                                                        "$ref": "#/components/schemas/Id"
-                                                    },
-                                                    "name": {
-                                                        "type": "string",
-                                                        "example": "Chicken"
-                                                    },
-                                                    "quantity": {
-                                                        "type": "string",
-                                                        "example": "2 breasts"
-                                                    },
-                                                    "category": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                            "Vegetable",
-                                                            "Fruit",
-                                                            "Protein",
-                                                            "Grain",
-                                                            "Dairy",
-                                                            "Other"
-                                                        ]
-                                                    },
-                                                    "createdAt": {
-                                                        "type": "string",
-                                                        "format": "date-time"
-                                                    },
-                                                    "updatedAt": {
-                                                        "type": "string",
-                                                        "format": "date-time"
-                                                    },
-                                                    "link": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "href": {
-                                                                "type": "string",
-                                                                "format": "uri",
-                                                                "example": "/ingredients/id"
-                                                            },
-                                                            "rel": {
-                                                                "type": "string",
-                                                                "example": "self"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "$ref": "#/components/schemas/PaginationLinks"
-                                        }
-                                    }
-                                }
-                            }
+                        "description": "All the Photo",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
                         }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/QueryParamValidationError"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/SearchNotFoundResponse"
                     }
                 }
             }
         },
-        "/ingredients/id": {
-            "get": {
-                "summary": "This End Point Responsible For Fetch ingredient",
-                "tags": [
-                    "Ingredient"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/IdParams"
-                    },
-                    {
-                        "$ref": "#/components/parameters/ExpandParams"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "ingredient Fetch Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 200
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "Tomato"
-                                                },
-                                                "description": {
-                                                    "type": "string",
-                                                    "example": "A red, juicy fruit often used in salads and sauces."
-                                                },
-                                                "category": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "Vegetable",
-                                                        "Fruit",
-                                                        "Protein",
-                                                        "Grain",
-                                                        "Dairy",
-                                                        "Other"
-                                                    ]
-                                                },
-                                                "createdAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updatedAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "self": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "self"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "GET"
-                                                        }
-                                                    }
-                                                },
-                                                "edit": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "edit"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "PUT"
-                                                        }
-                                                    }
-                                                },
-                                                "delete": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "delete"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "DELETE"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    }
-                }
-            },
-            "put": {
-                "summary": "This End Point Responsible For Update ingredient",
-                "tags": [
-                    "Ingredient"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/IdParams"
-                    }
-                ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "Tomato"
-                                    },
-                                    "description": {
-                                        "type": "string",
-                                        "example": "A red, juicy fruit often used in salads and sauces."
-                                    },
-                                    "category": {
-                                        "type": "string",
-                                        "enum": [
-                                            "Vegetable",
-                                            "Fruit",
-                                            "Protein",
-                                            "Grain",
-                                            "Dairy",
-                                            "Other"
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    }
+        "/photo/{id}": {
+            "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
                 },
+                {                   
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "id of the Photo",
+                    "type": "String"
+                }
+            ],
+            "get": {
+                "tags": ["Photo"],
+                "summary": "API Endpoint to find single photo",
+                "description": "Find one from the database",
+                "operationId": "getPhotoById",
+                "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "ingredient Update Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 200
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "Tomato"
-                                                },
-                                                "description": {
-                                                    "type": "string",
-                                                    "example": "A red, juicy fruit often used in salads and sauces."
-                                                },
-                                                "category": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "Vegetable",
-                                                        "Fruit",
-                                                        "Protein",
-                                                        "Grain",
-                                                        "Dairy",
-                                                        "Other"
-                                                    ]
-                                                },
-                                                "createdAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updatedAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "self": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "self"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "GET"
-                                                        }
-                                                    }
-                                                },
-                                                "edit": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "edit"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "PUT"
-                                                        }
-                                                    }
-                                                },
-                                                "delete": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "delete"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "DELETE"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                        "description": "Photo has been found",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
                         }
-                    },
-                    "201": {
-                        "description": "Ingredient Created Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 201
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "$ref": "#/components/schemas/Id"
-                                                },
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "Tomato"
-                                                },
-                                                "description": {
-                                                    "type": "string",
-                                                    "example": "A red, juicy fruit often used in salads and sauces."
-                                                },
-                                                "category": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "Vegetable",
-                                                        "Fruit",
-                                                        "Protein",
-                                                        "Grain",
-                                                        "Dairy",
-                                                        "Other"
-                                                    ]
-                                                },
-                                                "createdAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updatedAt": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            }
-                                        },
-                                        "links": {
-                                            "type": "object",
-                                            "properties": {
-                                                "self": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "self"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "GET"
-                                                        }
-                                                    }
-                                                },
-                                                "edit": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "edit"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "PUT"
-                                                        }
-                                                    }
-                                                },
-                                                "delete": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "rel": {
-                                                            "type": "string",
-                                                            "example": "delete"
-                                                        },
-                                                        "href": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "/ingredients/id"
-                                                        },
-                                                        "method": {
-                                                            "type": "string",
-                                                            "example": "DELETE"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
                     }
                 }
             },
             "delete": {
-                "summary": "This Api Responsible for Delete ingredients",
-                "tags": [
-                    "Ingredient"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/IdParams"
-                    }
-                ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
+                "tags": ["Photo"],
+                "summary": "API Endpoint to delete the photo",
+                "description": "Delete photo from the database",
+                "operationId": "deletePhoto",
+                "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/DataDeletedResponse"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
+                        "description": "Photo has deleted",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
                     }
+                }
+            },
+            "put": {
+                "tags": ["Photo"],
+                "summary": "API Endpoint for update photo",
+                "description": "Update the existing Photo in database",
+                "operationId": "updatePhoto",
+                "parameters": [{
+                    "name": "photo",
+                    "description": "Photo params to update the photo",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "#/components/schemas/Id"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "photoUrl": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Photo has been Updated",
+                        "schema": {
+                            "$ref": "#/components/schemas/Photo"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": ["User"],
+                "summary": "API Endpoint to find all users",
+                "description": "Find all users from the database",
+                "operationId": "getAllUser",
+                "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                }],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "All the Users",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "#/components/responses/400"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
                 }
             }
         },
         "/users/id": {
             "get": {
-                "summary": "This Api Responsible For Get User Profile Data",
-                "tags": [
-                    "User"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/IdParams"
-                    }
-                ],
+                "tags": ["User"],
+                "summary": "API Endpoint to find single users",
+                "description": "Find single users from the database",
+                "operationId": "getSingleUser",
+                "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                },
+                {             
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "id of the User",
+                    "type": "String"   
+                }],
+                "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "User Profile Data Fetch Sucessfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    }
-                }
-            },
-            "put": {
-                "summary": "This Api Responsible For Update User Profile Data",
-                "tags": [
-                    "User"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/IdParams"
-                    }
-                ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UserUpdateInput"
-                            }
+                        "description": "Single User",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
                         }
                     }
                 },
+                "401": {
+                    "$ref": "#definitions/responses/401"
+                },
+                "404": {
+                    "$ref": "#definitions/responses/404"
+                },
+                "500": {
+                    "$ref": "#definitions/responses/500"
+                }
+
+        },
+            "put": {
+                "tags": ["User"],
+                "summary": "API Endpoint to find single users",
+                "description": "Find single users from the database",
+                "operationId": "getSingleUser",
+                "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "body",
+                    "type": "string",
+                    "required": true
+                },
+                {             
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "id of the user",
+                    "type": "String"   
+                }],
+                "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "User Profile Data Update Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
+                        "description": "Single User",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserUpdateInput"
                         }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
                     }
+                },
+                "401": {
+                    "$ref": "#definitions/responses/401"
+                },
+                "404": {
+                    "$ref": "#definitions/responses/404"
+                },
+                "500": {
+                    "$ref": "#definitions/responses/500"
                 }
             },
             "delete": {
@@ -2285,71 +1240,75 @@
                 "tags": [
                     "User"
                 ],
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/IdParams"
-                    }
-                ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
+                "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                },
+                {             
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "id of the User",
+                    "type": "String"   
+                }],
+                "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/DataDeletedResponse"
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
-                    }
-                }
-            },
-            "patch": {
-                "summary": "Update User Profile (including Password)",
-                "tags": [
-                    "User"
-                ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UserPartialUpdateInput"
-                            }
+                        "description": "Delete User",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
                         }
                     }
                 },
+                "401": {
+                    "$ref": "#definitions/responses/401"
+                },
+                "404": {
+                    "$ref": "#definitions/responses/404"
+                },
+                "500": {
+                    "$ref": "#definitions/responses/500"
+                }
+            },
+            "patch": {
+                "tags": ["User"],
+                "summary": "API Endpoint to Update user Data",
+                "description": "Find single users from the database",
+                "operationId": "updateUserData",
+                "parameters": [{
+                    "name": "authorization",
+                    "description": "Access token to authorize the user",
+                    "in": "header",
+                    "type": "string",
+                    "required": true
+                },
+                {             
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "description": "id of the User",
+                    "type": "String"   
+                }],
+                "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "User Profile Data Update Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
+                        "description": "Single User",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserPartialUpdateInput"
                         }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    },
-                    "500": {
-                        "$ref": "#/components/responses/500"
                     }
+                },
+                "401": {
+                    "$ref": "#/components/responses/401"
+                },
+                "404": {
+                    "$ref": "#/components/responses/404"
+                },
+                "500": {
+                    "$ref": "#/components/responses/500"
                 }
             }
         }
