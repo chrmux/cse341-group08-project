@@ -1,0 +1,87 @@
+[{
+    "name": "Salmon Fillets",
+    "description": "Salmon fillets with bone and skin removed",
+    "category": "Fish"
+},{
+    "name": "Onion",
+    "description": "A root with a desire for revenge against all who cut it",
+    "category": "Veggitable"
+},{
+    "name": "Celery",
+    "description": "Fresh celery chopped and measured",
+    "category": "Veggitable"
+},{
+    "name": "Butter",
+    "description": "Salted butter",
+    "category": "Dairy"
+},{
+    "name": "Coconut Oil",
+    "description": "Coconut oil can be a good replacement for butter",
+    "category": "Oil"
+},{
+    "name": "Turkey Broth",
+    "description": "Turkey broth likely made from stock",
+    "category": "Broth"
+},{
+    "name": "Carrots",
+    "description": "A sweet orange root veggitable, not a sweet potato",
+    "category": "Veggitable"
+},{
+    "name": "Sweet Potato",
+    "description": "A sweet orange root veggitable, not a carrot",
+    "category": "Veggitable"
+},{
+    "name": "Coconut Milk",
+    "description": "Canned coconut milk has both fat and milk",
+    "category": "Non-Dairy Milk"
+},{
+    "name": "Bacon",
+    "description": "A particular cut of ham, often used for breakfast food",
+    "category": "Meat"
+},{
+    "name": "Dill Weed",
+    "description": "Fresh or dried dill is a great seasoning",
+    "category": [
+        "Herb",
+        "Seasoning"
+    ]
+},{
+    "name": "Salt",
+    "description": "A mineral used as a seasoning",
+    "category": "Seasoning"
+},{
+    "name": "Black Pepper",
+    "description": "A seasoning often used beside salt",
+    "category": "Seasoning"
+},
+{
+    "name": "Pork Loin Ribs",
+    "description": "A particular cut of pork",
+    "category": "Meat"
+},{
+    "name": "Barbecue sauce",
+    "description": "A tomato based sauce often used on barbecue meat",
+    "category": "Sauce"
+},{
+    "name": "Zested Orange Peel",
+    "description": "The zest of an orange peel",
+    "category": [
+        "Zest",
+        "Seasoning"
+    ]
+},{
+    "name": "Zested Lime Peel",
+    "description": "The zest of a lime peel",
+    "category": [
+        "Zest",
+        "Seasoning"
+    ]
+},{
+    "name": "Orange Juice",
+    "description": "The juice of an orange",
+    "category": "Juice"
+},{
+    "name": "Lime Juice",
+    "description": "The juice of a lime",
+    "category": "Juice"
+}]

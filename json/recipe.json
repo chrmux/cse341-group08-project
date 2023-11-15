@@ -1,0 +1,122 @@
+[{
+    "photo": "null",
+    "title": "Delicious Paleo Salmon Chowder",
+    "ingredients": [
+        {
+            "id": "6553e7b42cc92b36dcf35b9e",
+            "name": "Salmon Fillets",
+            "quantity": "1 lb"
+        },{
+            "id": "6553e86d2cc92b36dcf46bdf",
+            "name": "Onion",
+            "quantity": "1 medium"
+        },{
+            "id": "6553e7b42cc92b36dcf35b9f",
+            "name": "Celery",
+            "quantity": "1/2 Cup"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba0",
+            "name": "Butter",
+            "quantity": "2 Tablespoons"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba1",
+            "name": "Coconut Oil",
+            "quantity": "2 Tablespoons"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba2",
+            "name": "Turkey Broth",
+            "quantity": "3 Cups"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba3",
+            "name": "Carrots",
+            "quantity": "2 Cups"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba4",
+            "name": "Sweet Potato",
+            "quantity": "1 lb"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba5",
+            "name": "Coconut Milk",
+            "quantity": "1 (13.5 oz) Can"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba6",
+            "name": "Bacon",
+            "quantity": "1/2 lb"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba7",
+            "name": "Dill Weed",
+            "quantity": "1 Tablespoon"
+        }, {
+            "id": "6553e7b42cc92b36dcf35ba8",
+            "name": "Salt",
+            "quantity": "To Taste"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba9",
+            "name": "Black Pepper",
+            "quantity": "To Taste"
+        }
+    ],
+    "instructions": [
+        "Sprinkle salmon with salt and pepper; place on a foil-lined backing sheet. Bake at 400° for 15 minutes or until desired degree of doneness. Flake fish into 1/2 inch pieces; set asside.",
+        "melt butter or coconut oil in a large dutch oven over medium heat. Add onion, carrots, and celery. Saute 5 minutes or until tender. Gradually whisk in turykey broth or water. Cook over medium heat, stirring constantly, until bubbly",
+        "Add sweet potatoes, reduce heat, and simmer 15 minutes or until potato is tender. Strir in coconut milk. Cook 6 minutes or until heated. Add salt, black pepper, dill, cooked salmon, and crumbled bacon stirring gently to combine."
+    ],
+    "creator": "Jadyn Iverson",
+    "keywords": [
+        "Paleo",
+        "Soup"
+    ],
+    "Culture": "American",
+    "level": "Simple",
+    "description": "A savory soup with lots of veggies and tasty salmon"
+},{
+    "photo": "null",
+    "title": "Key West Ribs",
+    "ingredients": [
+        {
+            "id": "6553eeda2cc92b36dcfdf5a4",
+            "name": "Pork Loin Ribs",
+            "quantity": "2 1/2 lb"
+        },{
+            "id": "6553e86d2cc92b36dcf46bdf",
+            "name": "Onion",
+            "quantity": "1/4 Cup"
+        },{
+            "id": "6553eeda2cc92b36dcfdf5a5",
+            "name": "Barbecue Sauce",
+            "quantity": "1/4 Cup"
+        },{
+            "id": "6553eeda2cc92b36dcfdf5a6",
+            "name": "Zested Orange Peel",
+            "quantity": "1 Teaspoon"
+        },{
+            "id": "6553eeda2cc92b36dcfdf5a7",
+            "name": "Zested Lime Peel",
+            "quantity": "1 Teaspoon"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba8",
+            "name": "Salt",
+            "quantity": "1/2 Teaspoon"
+        },{
+            "id": "6553eeda2cc92b36dcfdf5a8",
+            "name": "Orange Juice",
+            "quantity": "1/4 Cup"
+        },{
+            "id": "6553eeda2cc92b36dcfdf5a9",
+            "name": "Lime Juice",
+            "quantity": "2 Tablespoons"
+        }
+    ],
+    "instructions": [
+        "Place pork ribs in 3 1/2 to 4 quart slow cooker. In a small bowl combine all remaining ingredients; mix well. Pour over ribs",
+        "Cover; cook on low setting for 7 to 9 hours. Spoon sauce over ribs"
+    ],
+    "creator": "Jadyn Iverson",
+    "keywords": [
+        "Ribs",
+        "Slow Cooker"
+    ],
+    "Culture": "American",
+    "level": "Simple",
+    "description": "A savory rib and sauce recipe that can be searved over rice and beans"
+}]
