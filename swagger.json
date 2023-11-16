@@ -162,7 +162,7 @@
             }
         },
         "schemas": {
-            "Ingredient": {
+            "Ingredients": {
                 "type": "object",
                 "properties": {
                     "ingredientId": {
@@ -178,7 +178,7 @@
                     }
                 }
             },
-            "Recipe": {
+            "Recipes": {
                 "type": "object",
                 "properties": {
                     "userId": {
@@ -207,7 +207,7 @@
                                 "keywords": {
                                     "type": "string"
                                 },
-                                "culture": {
+                                "Culture": {
                                     "type": "string"
                                 },
                                 "level": {
@@ -547,7 +547,7 @@
                 }
             }
         },
-        "/recipe/{id}":{
+        "/recipes/{id}":{
             "get": {
                 "tags": ["Recipe"],
                 "summary": "Fetch item by Id",
@@ -788,7 +788,7 @@
                 }
             }
         },
-        "/keyword": {
+        "/keywords": {
             "post": {
                 "tags": ["Keyword"],
                 "summary": "Create a Keyword",
@@ -854,7 +854,7 @@
                 }
             }
         },
-        "/keyword/{id}": {
+        "/keywords/{id}": {
             "parameters": [{
                     "name": "authorization",
                     "description": "Access token to authorize the user",
@@ -889,7 +889,7 @@
                 "tags": ["Keyword"],
                 "summary": " Update Keyword By ID",
                 "description": "Update the existing keyword in database",
-                "operationId": "updateKeyword",
+                "operationId": "updateKeywords",
                 "parameters": [{
                     "name": "keyword",
                     "description": "Keyword params to update the keyword",
@@ -925,7 +925,7 @@
                 "tags": ["Keyword"],
                 "summary": " Delete keyword By ID",
                 "description": "Delete keyword from the database",
-                "operationId": "deleteKeyword",
+                "operationId": "deleteKeywords",
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -937,7 +937,7 @@
                 }
             }            
         },
-        "/keyword/{classification}": {
+        "/keywords/{classification}": {
             "parameters": [{
                     "name": "authorization",
                     "description": "Access token to authorize the user",
@@ -984,7 +984,7 @@
                         
                     },
                     {
-                        "name": "ingredient",
+                        "name": "ingredients",
                         "description": "Ingredient params to create new ingredient",
                         "in": "body",
                         "required": "true",
@@ -1216,7 +1216,7 @@
                 }
             }
         },
-        "/photo": {
+        "/photos": {
             "post": {
                 "tags": ["Photo"],
                 "summary": "Create photo",
@@ -1230,7 +1230,7 @@
                     "required": true                        
                     },
                     {
-                        "name": "photo",
+                        "name": "photos",
                         "description": "Photo params to create new photo",
                         "in": "body",
                         "required": "true",
@@ -1282,7 +1282,7 @@
                 }
             }
         },
-        "/photo/{id}": {
+        "/photos/{id}": {
             "parameters": [{
                     "name": "authorization",
                     "description": "Access token to authorize the user",
