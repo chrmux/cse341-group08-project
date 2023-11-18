@@ -50,400 +50,114 @@
               "scheme": "bearer",
               "bearerFormat": "JWT"
             }
-          },
-        "responses": {
-            "400": {
-                "description": "Bad Request",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "number",
-                                    "example": 400
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "Bad Request"
-                                },
-                                "errors": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "field": {
-                                                "type": "string",
-                                                "example": "email"
-                                            },
-                                            "message": {
-                                                "type": "string",
-                                                "example": "Email Field is Required"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "401": {
-                "description": "Unauthorized",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "integer",
-                                    "example": 401
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "Access denied. You do not have permission to perform this operation."
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "404": {
-                "description": "Not Found",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "integer",
-                                    "format": "int32",
-                                    "example": 404
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "Your Requested Item Not Found"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "500": {
-                "description": "Internal Server Error",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "number",
-                                    "example": 500
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "An unexpected error occurred while processing your request. Please try again later."
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+          }
         },
-        "parameters": {
-            "IdParams": {
-                "required": true,
-                "in": "path",
-                "name": "id",
-                "description": "Item By Id",
-                "schema": {
-                    "$ref": "#/components/schemas/Id"
-                }
-            }
-        },
-        "schemas": {
-            "Ingredients": {
-                "type": "object",
-                "properties": {
-                    "ingredientId": {
-                        "$ref": "#/components/schemas/Id"
-                    },
-                    "description": {
-                        "type": "string",
-                        "example": "any"
-                    },
-                    "category": {
-                        "type": "object",
-                        "example": "any"
-                    }
-                }
-            },
-            "Recipes": {
-                "type": "object",
-                "properties": {
-                    "userId": {
-                        "$ref": "#/components/schemas/Recipes"
-                    },
-                    "recipe info": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "photo": {
-                                    "type": "string"
-                                },
-                                "title": {
-                                    "type": "string"
-                                },
-                                "ingredients": {
-                                    "type": "string"
-                                },
-                                "instruction": {
-                                    "type": "string"
-                                },
-                                "creator": {
-                                    "type": "array"
-                                    
-                                },
-                                "keywords": {
-                                    "type": "string"
-                                },
-                                "Culture": {
-                                    "type": "string"
-                                },
-                                "level": {
-                                    "type": "string"
-                                },
-                                "description": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "Photo": {
-                "type": "object",
-                "properties": {
-                    "objectId": {
-                        "$ref": "#/components/schemas/Photo"
-                    },
-                    "title": {
-                        "type": "object",
-                        "example": "any"
-                    },
-                    "photoUrl": {
-                        "type": "string",
-                        "example": "any"
-                    }
-                }
-            },
-            "Id": {
-                "type": "string",
-                "example": "550e8400-e29b-41d4-a716-446655440000"
-            },
-            "Name": {
-                "type": "string",
-                "example": "Pork Adobo"
-            },
-            "keyword": {
-                "type": "string",
-                "example": "any"
-            },
-            "User": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "example": "user123"
-                    },
-                    "roles": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "admin",
-                                "user"
-                            ],
-                            "default": "user"
-                        }
-                    },
-                    "password": {
-                        "type": "String",
-                        "example": "any"
-                    }
-                }
-            },
-            "UserUpdateInput": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "example": "new_user123"
-                    },
-                    "roles": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "admin",
-                                "user"
-                            ],
-                            "default": "user"
-                        }
-                    }
-                }
-            },
-            "UserPartialUpdateInput": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "roles": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "admin",
-                                "user"
-                            ],
-                            "default": "user"
-                        }
-                    },
-                    "currentPassword": {
-                        "type": "string",
-                        "format": "password"
-                    },
-                    "newPassword": {
-                        "type": "string",
-                        "format": "password"
-                    }
-                }
-            }
-        }
-    },
     "schemes": ["http", "https"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
         "/signup": {
-                "post": {
-                    "tags":["Auth"],
-                  "summary": "Create New User",
-                  "description": "Register a new user account",
-                  "operationId": "signup",
-                  "requestBody": {
-                    "required": true,
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "object",
-                          "properties": {
-                            "username": {
-                              "type": "string",
-                              "example": "john_doe"
-                            },
-                            "email": {
-                              "type": "string",
-                              "format": "email",
-                              "example": "john.doe@example.com"
-                            },
-                            "password": {
-                              "type": "string",
-                              "format": "password",
-                              "example": "password123"
-                            }
-                          }
-                        }
-                      }
-                    },
-                  "responses": {
-                    "201": {
-                      "description": "User registered successfully",
-                      "content": {
-                        "application/json": {
-                          "example": {
-                            "message": "User registered successfully"
-                          }
-                        }
-                      }
-                    },
-                    "400": {
-                      "description": "Bad Request",
-                      "content": {
-                        "application/json": {
-                          "example": {
-                            "error": "Invalid input parameters"
-                          }
-                        }
-                      }
-                    },
-                    "409": {
-                      "description": "Conflict",
-                      "content": {
-                        "application/json": {
-                          "example": {
-                            "error": "User with this email already exists"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-
-        "/login": {
             "post": {
-                "tags":["Auth"],
-                "summary": "User Login",
-                "description": "Authenticate and obtain an access token",
-                "operationId": "login",
-                "requestBody": {
-                  "required": true,
-                  "content": {
-                    "application/json": {
-                      "schema": {
+                "tags": ["Auth"],
+                "summary": "Create user",
+                "description": "This is for when a user creates an account.",
+                "operationId": "createUser",
+                "produces": ["application/json"],
+                "parameters": [
+                  {
+                    "in": "body",
+                    "name": "body",
+                    "description": "Created user object",
+                    "required": true,
+                    "schema": {
                         "type": "object",
                         "properties": {
-                          "username": {
-                            "type": "string",
-                            "example": "john_doe"
-                          },
-                          "password": {
-                            "type": "string",
-                            "format": "password",
-                            "example": "password123"
-                          }
+                            "username": {
+                                "type": "string",
+                                "example": "any"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "any"
+                            },
+                            "password": {
+                                "type": "string",
+                                "example": "any"
+                            }
                         }
-                      }
                     }
                   }
-                },
+                ],
                 "responses": {
-                  "200": {
-                    "description": "Successful login",
-                    "content": {
-                      "application/json": {
-                        "example": {
-                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                  "201": {
+                    "description": "successfully created user",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "any"
                         }
                       }
                     }
                   },
-                  "401": {
-                    "description": "Unauthorized",
-                    "content": {
-                      "application/json": {
-                        "example": {
-                          "error": "Invalid credentials"
-                        }
-                      }
-                    }
+                  "400": {
+                    "description": "Invalid theme name value"
                   }
                 }
               }
             },
+            "/user/login": {
+                "get": {
+                  "tags": ["Auth"],
+                  "summary": "Logs user into the system",
+                  "operationId": "loginUser",
+                  "produces": ["application/json"],
+                  "parameters": [
+                    {
+                      "name": "username",
+                      "in": "query",
+                      "description": "The user name for login",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "name": "password",
+                      "in": "query",
+                      "description": "The password for login in clear text",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "successful operation",
+                      "headers": {
+                        "X-Rate-Limit": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "calls per hour allowed by the user"
+                        },
+                        "X-Expires-After": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "date in UTC when token expires"
+                        }
+                      },
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "400": {
+                      "description": "Invalid username/password supplied"
+                    }
+                  }
+                }
+              },
         "/recipes": {
             "post": {
                 "tags": ["Recipes"],
@@ -626,20 +340,16 @@
                                 }
                             },
                             "keywords": {
-                                "type": "string",
-                                "example": "Boil water"
+                                "type": "string"
                             },
                             "culture": {
-                                "type": "string",
-                                "example": "culture"
+                                "type": "string"
                             },
                             "level": {
-                                "type": "string",
-                                "example": "level"
+                                "type": "string"
                             },
                             "description": {
-                                "type": "string",
-                                "example": "description"
+                                "type": "string"
                             }
                         }
                     }
@@ -773,7 +483,7 @@
                     "200": {
                         "description": "Recipe has been found",
                         "schema": {
-                            "$ref": "#/components/schemas/Keyword"
+                            "$ref": "#/components/schemas/id"
                         }
                     }
                 },
@@ -1571,5 +1281,286 @@
                 }
             }
         }
+    },
+    "parameters": {
+        "IdParams": {
+            "required": true,
+            "in": "path",
+            "name": "id",
+            "description": "Item By Id",
+            "schema": {
+                "$ref": "#/components/schemas/Id"
+            }
+        },
+    "difinitions": {
+        "type": "object",
+      "required": ["password", "username"],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "schemas": {
+        "Ingredients": {
+            "type": "object",
+            "properties": {
+                "ingredientId": {
+                    "$ref": "#/components/schemas/Id"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "any"
+                },
+                "category": {
+                    "type": "object",
+                    "example": "any"
+                }
+            }
+        },
+        "Recipes": {
+            "type": "object",
+            "properties": {
+                "userId": {
+                    "$ref": "#/components/schemas/Id"
+                },
+                "recipe info": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "photo": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "ingredients": {
+                                "type": "string"
+                            },
+                            "instruction": {
+                                "type": "string"
+                            },
+                            "creator": {
+                                "type": "array"
+                                
+                            },
+                            "keywords": {
+                                "type": "string"
+                            },
+                            "Culture": {
+                                "type": "string"
+                            },
+                            "level": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Photo": {
+            "type": "object",
+            "properties": {
+                "objectId": {
+                    "$ref": "#/components/schemas/Id"
+                },
+                "title": {
+                    "type": "object",
+                    "example": "any"
+                },
+                "photoUrl": {
+                    "type": "string",
+                    "example": "any"
+                }
+            }
+        },
+        "Id": {
+            "type": "string",
+            "example": "550e8400-e29b-41d4-a716-446655440000"
+        },
+        "Name": {
+            "type": "string",
+            "example": "Pork Adobo"
+        },
+        "keyword": {
+            "type": "string",
+            "example": "any"
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "user123"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "admin",
+                            "user"
+                        ],
+                        "default": "user"
+                    }
+                },
+                "password": {
+                    "type": "String",
+                    "example": "any"
+                }
+            }
+        },
+        "UserUpdateInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "new_user123"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "admin",
+                            "user"
+                        ],
+                        "default": "user"
+                    }
+                }
+            }
+        },
+        "UserPartialUpdateInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "admin",
+                            "user"
+                        ],
+                        "default": "user"
+                    }
+                },
+                "currentPassword": {
+                    "type": "string",
+                    "format": "password"
+                },
+                "newPassword": {
+                    "type": "string",
+                    "format": "password"
+                }
+            }
+        }
+    },
+    "responses": {
+        "400": {
+            "description": "Bad Request",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "code": {
+                                "type": "number",
+                                "example": 400
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "Bad Request"
+                            },
+                            "errors": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "field": {
+                                            "type": "string",
+                                            "example": "email"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Email Field is Required"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "401": {
+            "description": "Unauthorized",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "code": {
+                                "type": "integer",
+                                "example": 401
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "Access denied. You do not have permission to perform this operation."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "404": {
+            "description": "Not Found",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "code": {
+                                "type": "integer",
+                                "format": "int32",
+                                "example": 404
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "Your Requested Item Not Found"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "500": {
+            "description": "Internal Server Error",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "code": {
+                                "type": "number",
+                                "example": 500
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "An unexpected error occurred while processing your request. Please try again later."
+                            }
+                        }
+                    }
+                }
+            }
+        }}
     }
 }

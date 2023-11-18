@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 const getKeywords = async(req, res, next) => {
     console.log("In get keywords");
     try {
-        const result = await mongodb.getDb().db('Group08-Project03').collection('Keywords').find({});
+        const result = await mongodb.getDb().db('Group08-Project03').collection('keywords').find({});
         result.toArray().then((lists) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(lists);

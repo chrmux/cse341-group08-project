@@ -4,7 +4,6 @@ const mongodb = require('./db/connect');
 const dotenv = require('dotenv');
 dotenv.config();
 const port = process.env.PORT || 8080;
-const host = process.env.HOST || 'localhost';
 
 const server = http.createServer(expressApp);
 
@@ -14,6 +13,6 @@ mongodb.initDb((err) => {
     console.log(err);
   } else {
     server.listen(port);
-    console.log(`Connected to DB and listening on ${port}`);
+    console.log(`Connected to DB and listening on port ${port}`);
   }
 });
