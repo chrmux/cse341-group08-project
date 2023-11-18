@@ -1,5 +1,5 @@
 {
-    "openapi": "3.0.0",
+    "swagger": "2.0",
     "info": {
         "title": "Recipe Book",
         "description": "API System for Recipe Book",
@@ -23,15 +23,15 @@
             "description": "Authentication Endpoints (Public)"
         },
         {
-            "name": "Recipe",
+            "name": "Recipes",
             "description": "Recipe Endpoints (Public + Private)"
         },
         {
-            "name": "Keyword",
+            "name": "Keywords",
             "description": "Keyword Endpoints (Public + Private)"
         },
         {
-            "name": "Ingredient",
+            "name": "Ingredients",
             "description": "Ingredient Endpoints (Public + Private)"
         },
         {
@@ -39,7 +39,7 @@
             "description": "Photo Endpoints (Public + Private)"
         },
         {
-            "name": "User",
+            "name": "Users",
             "description": "User Endpoints (Admin + Public)"
         }
     ],
@@ -182,7 +182,7 @@
                 "type": "object",
                 "properties": {
                     "userId": {
-                        "$ref": "#/components/schemas/Recipe"
+                        "$ref": "#/components/schemas/Recipes"
                     },
                     "recipe info": {
                         "schema": {
@@ -446,12 +446,12 @@
             },
         "/recipes": {
             "post": {
-                "tags": ["Recipe"],
+                "tags": ["Recipes"],
                 "summary": "Create a Recipe",
                 "description": "Create new Recipe in database",
                 "operationId": "createRecipe",
                 "parameters": [{
-                        "name": "recipe",
+                        "name": "recipes",
                         "description": "Recipe params to create new recipe",
                         "in": "body",
                         "required": "true",
@@ -516,7 +516,7 @@
                 }
             },
             "get": {
-                "tags": ["Recipe"],
+                "tags": ["Recipes"],
                 "summary": "Fetch All Recipes",
                 "description": "Find all Recipes from the database",
                 "operationId": "getallRecipe",
@@ -549,7 +549,7 @@
         },
         "/recipes/{id}":{
             "get": {
-                "tags": ["Recipe"],
+                "tags": ["Recipes"],
                 "summary": "Fetch item by Id",
                 "description": "Find one from the database",
                 "operationId": "getRecipeById",
@@ -589,12 +589,12 @@
                 }
             },
             "put": {
-                "tags": ["Recipe"],
+                "tags": ["Recipes"],
                 "summary": "Update Recipe Data",
                 "description": "Update the existing Recipe in database",
                 "operationId": "updateRecipe",
                 "parameters": [{
-                    "name": "recipe",
+                    "name": "recipes",
                     "description": "Recipe params to update the recipe",
                     "in": "body",
                     "schema": {
@@ -664,7 +664,7 @@
                 }
             },
     "delete": {
-            "tags": ["Recipe"],
+            "tags": ["Recipes"],
             "summary": "Delete Item",
             "description": "Delete Recipe from the database",
             "operationId": "deleteRecipe",
@@ -722,7 +722,7 @@
                 }
             ],
             "get": {
-                "tags": ["Recipe"],
+                "tags": ["Recipes"],
                 "summary": "Fetch item by name",
                 "description": "Find one from the database",
                 "operationId": "getRecipeByName",
@@ -764,7 +764,7 @@
                 }
             ],
             "get": {
-                "tags": ["Recipe"],
+                "tags": ["Recipes"],
                 "summary": "Fetch item(s) by keyword(s)",
                 "description": "Find one from the database",
                 "operationId": "getRecipeByKeyword",
@@ -790,7 +790,7 @@
         },
         "/keywords": {
             "post": {
-                "tags": ["Keyword"],
+                "tags": ["Keywords"],
                 "summary": "Create a Keyword",
                 "description": "Create new keyword in database",
                 "operationId": "createKeyword",
@@ -802,7 +802,7 @@
                     "required": true                        
                     },
                     {
-                        "name": "keyword",
+                        "name": "keywords",
                         "description": "Keyword params to create new keyword",
                         "in": "body",
                         "required": "true",
@@ -832,7 +832,7 @@
                 }
             },
             "get": {
-                "tags": ["Keyword"],
+                "tags": ["Keywords"],
                 "summary": "Fetch all keywords",
                 "description": "Find all keyword from the database",
                 "operationId": "getallKeyword",
@@ -871,7 +871,7 @@
                 }
             ],
             "get": {
-                "tags": ["Keyword"],
+                "tags": ["Keywords"],
                 "summary": "Fetch keyword by ID",
                 "description": "Find one from the database",
                 "operationId": "getKeywordById",
@@ -886,7 +886,7 @@
                 }
             },
             "put": {
-                "tags": ["Keyword"],
+                "tags": ["Keywords"],
                 "summary": " Update Keyword By ID",
                 "description": "Update the existing keyword in database",
                 "operationId": "updateKeywords",
@@ -922,7 +922,7 @@
                 }
             },
             "delete": {
-                "tags": ["Keyword"],
+                "tags": ["Keywords"],
                 "summary": " Delete keyword By ID",
                 "description": "Delete keyword from the database",
                 "operationId": "deleteKeywords",
@@ -954,7 +954,7 @@
                 }
             ],
             "get": {
-                "tags": ["Keyword"],
+                "tags": ["Keywords"],
                 "summary": "Fetch keywords by classification",
                 "description": "Find one from the database",
                 "operationId": "getKeywordByClassification",
@@ -971,7 +971,7 @@
         },
         "/ingredients": {
             "post": {
-                "tags": ["Ingredient"],
+                "tags": ["Ingredients"],
                 "summary": "Create Ingredients",
                 "description": "Create new Ingredient in database",
                 "parameters": [{
@@ -1027,10 +1027,10 @@
                 }
             },
             "get": {
-                "tags": ["Ingredient"],
+                "tags": ["Ingredients"],
                 "summary": "Fetch All Ingredients",
                 "description": "Find all ingredients from the database",
-                "operationId": "getAllIngredients",
+                "operationId": "getIngredients",
                 "parameters": [{
                     "name": "authorization",
                     "description": "Access token to authorize the user",
@@ -1075,7 +1075,7 @@
                 }
             ],
             "get": {
-                "tags": ["Ingredient"],
+                "tags": ["Ingredients"],
                 "summary": "Fetch Ingredient",
                 "description": "Find one from the database",
                 "operationId": "getIngredientsById",
@@ -1099,7 +1099,7 @@
                 }
             },
             "put": {
-                "tags": ["Ingredient"],
+                "tags": ["Ingredients"],
                 "summary": "Update Ingredients",
                 "description": "Update the existing ingredient in database",
                 "operationId": "updateIngredient",
@@ -1149,7 +1149,7 @@
                 }
             },
             "delete": {
-                "tags": ["Ingredient"],
+                "tags": ["Ingredients"],
                 "summary": "Delete Ingredient",
                 "description": "Delete ingredient from the database",
                 "operationId": "deleteIngredient",
@@ -1192,7 +1192,7 @@
                 }
             ],
             "get": {
-                "tags": ["Ingredient"],
+                "tags": ["Ingredients"],
                 "summary": "Fetch ingredients by name",
                 "description": "Find one from the database",
                 "operationId": "getRecipeByIngredient",
@@ -1230,7 +1230,7 @@
                     "required": true                        
                     },
                     {
-                        "name": "photos",
+                        "name": "photo",
                         "description": "Photo params to create new photo",
                         "in": "body",
                         "required": "true",
@@ -1367,7 +1367,7 @@
         },
         "/users": {
             "get": {
-                "tags": ["User"],
+                "tags": ["Users"],
                 "summary": "Get All Profile Data",
                 "description": "Find all users from the database",
                 "operationId": "getAllUser",
@@ -1400,7 +1400,7 @@
         },
         "/users/id": {
             "get": {
-                "tags": ["User"],
+                "tags": ["Users"],
                 "summary": "Get User Profile Data by Id",
                 "description": "Find single users from the database",
                 "operationId": "getSingleUser",
@@ -1439,7 +1439,7 @@
 
         },
             "put": {
-                "tags": ["User"],
+                "tags": ["Users"],
                 "summary": "Update User Profile Data",
                 "description": "Update single user from the database",
                 "operationId": "getSingleUser",
@@ -1486,7 +1486,7 @@
             "delete": {
                 "summary": "Delete User Profile Data",
                 "tags": [
-                    "User"
+                    "Users"
                 ],
                 "parameters": [{
                     "name": "authorization",
@@ -1522,7 +1522,7 @@
                 }
             },
             "patch": {
-                "tags": ["User"],
+                "tags": ["Users"],
                 "summary": "Update User Profile(including Password)",
                 "description": "Update single user from the database",
                 "operationId": "updateUserData",

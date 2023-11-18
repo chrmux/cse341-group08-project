@@ -1,5 +1,13 @@
-const Recipe = require('./RecipeModel');
-const Ingredient = require('./IngredientModel');
-const User = require('./UserModel');
+const dbConfig = require('../db/db.config.js');
 
-module.exports = Recipe, Ingredient, User;
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
+const db = {};
+db.mongoose = mongoose;
+db.url = dbConfig.url;
+//db.recipe = require('./RecipeModel.js')(mongoose);
+//db.ingredient = require('./ingredients.js')(mongoose);
+//db.user = require('./UserModel.js')(mongoose);
+
+module.exports = db;
