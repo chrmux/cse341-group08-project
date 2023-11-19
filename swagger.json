@@ -52,9 +52,7 @@
             }
           }
         },
-    "host": "cse341-group08-project.onrender.com",
-    "basePath": "/",
-    "schemes": ["https", "http"],
+    "schemes": ["http", "https"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
