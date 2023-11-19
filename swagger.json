@@ -187,10 +187,7 @@
                                     "example": "Boil water"
                                 },
                                 "creator": {
-                                    "type": "string",
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Id"
-                                    }
+                                    "type": "string"
                                 },
                                 "keywords": {
                                     "type": "string",
@@ -222,10 +219,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Recipe Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "New Recipe Created"
                     }
                 }
             },
