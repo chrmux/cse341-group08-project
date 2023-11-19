@@ -234,30 +234,12 @@
                 "summary": "Fetch All Recipes",
                 "description": "Find all Recipes from the database",
                 "operationId": "getallRecipe",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
+
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Recipe",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "All the Recipe"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -275,31 +257,12 @@
                     "description": "Id of the recipe",
                     "type": "String"
 
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
                 }
             ],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Recipe has been found"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
             "put": {
@@ -315,7 +278,8 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string",
+                                "example": "any"
                             },
                             "photo": {
                                 "type": "string",
@@ -334,10 +298,7 @@
                                 "example": "any"
                             },
                             "creator": {
-                                "type": "string",
-                                "schema": {
-                                    "$ref": "#/components/schemas/Id"
-                                }
+                                "type": "string"
                             },
                             "keywords": {
                                 "type": "string"
@@ -357,20 +318,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been Updated",
-                        "schema": {
-                            "$ref": "#"
-                        }
+                        "description": "Recipe has been Updated"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
     "delete": {
@@ -386,32 +335,14 @@
                 "description": "Id of the recipe",
                 "type": "String"
 
-            },
-            {
-                "name": "authorization",
-                "description": "Access token to authorize the user",
-                "in": "header",
-                "type": "string",
-                "required": true
             }
         ],
             "responses": {
                 "200": {
-                    "description": "Recipe has deleted",
-                    "schema": {
-                        "$ref": "#/components/schemas/Id"
-                    }
+                    "description": "Recipe has deleted"
                 }
-            },
-            "401": {
-                "$ref": "#/components/responses/401"
-            },
-            "404": {
-                "$ref": "#/components/responses/404"
-            },
-            "500": {
-                "$ref": "#/components/responses/500"
             }
+
         }
     },
         "/recipes/{name}": {
@@ -422,13 +353,6 @@
                     "description": "name of the recipe",
                     "type": "String"
 
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
                 }
             ],
             "get": {
@@ -439,20 +363,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Name"
-                        }
+                        "description": "Recipe has been found"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -464,13 +376,6 @@
                     "description": "keyword of the recipe",
                     "type": "String"
 
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
                 }
             ],
             "get": {
@@ -481,20 +386,9 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/id"
-                        }
+                        "description": "Recipe has been found"
+
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -504,13 +398,7 @@
                 "summary": "Create a Keyword",
                 "description": "Create new keyword in database",
                 "operationId": "createKeyword",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true                        
-                    },
+                "parameters": [
                     {
                         "name": "keywords",
                         "description": "Keyword params to create new keyword",
@@ -534,10 +422,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Keyword Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "New Keyword Created"
                     }
                 }
             },
@@ -546,32 +431,16 @@
                 "summary": "Fetch all keywords",
                 "description": "Find all keyword from the database",
                 "operationId": "getallKeyword",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the keyword",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "All the keyword"
                     }
                 }
             }
         },
         "/keywords/{id}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
+            "parameters": [
                 {                   
                     "name": "id",
                     "in": "path",
@@ -588,10 +457,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Keyword has been found"
                     }
                 }
             },
@@ -608,7 +474,8 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string",
+                                "example": "string"
                             },
                             "classification": {
                                 "type": "string",
@@ -624,10 +491,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has been Updated",
-                        "schema": {
-                            "$ref": "#/components/schemas/Keyword"
-                        }
+                        "description": "Keyword has been Updated"
                     }
                 }
             },
@@ -639,22 +503,13 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has deleted",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Keyword has deleted"
                     }
                 }
             }            
         },
         "/keywords/{classification}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
+            "parameters": [
                 {                   
                     "name": "classification",
                     "in": "path",
@@ -671,10 +526,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Keyword has been found"
                     }
                 }
             }
@@ -684,15 +536,7 @@
                 "tags": ["Ingredients"],
                 "summary": "Create Ingredients",
                 "description": "Create new Ingredient in database",
-                "parameters": [{
-
-                        "name": "authorization",
-                        "description": "Access token to authorize the user",
-                        "in": "header",
-                        "type": "string",
-                        "required": true
-                        
-                    },
+                "parameters": [
                     {
                         "name": "ingredients",
                         "description": "Ingredient params to create new ingredient",
@@ -720,20 +564,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Ingredient Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "New Ingredient Created"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
             "get": {
@@ -741,41 +573,16 @@
                 "summary": "Fetch All Ingredients",
                 "description": "Find all ingredients from the database",
                 "operationId": "getIngredients",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Ingredients",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "All the Ingredients"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
         "/ingredients/{id}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
+            "parameters": [
                 {
                     "name": "id",
                     "in": "path",
@@ -792,20 +599,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Ingredient has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "Ingredient has been found"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
             "put": {
@@ -821,7 +616,8 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string",
+                                "example": "any"
                             },
                             "name": {
                                 "type": "string",
@@ -842,20 +638,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Ingredient has been Updated",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "Ingredient has been Updated"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
             "delete": {
@@ -866,20 +650,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Ingredient has deleted",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Ingredient has deleted"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/404"
                 }
             }
             
@@ -892,13 +664,6 @@
                     "description": "name of the ingredient",
                     "type": "String"
 
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
                 }
             ],
             "get": {
@@ -909,20 +674,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "ingredients has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "ingredients has been found"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -932,13 +685,7 @@
                 "summary": "Create photo",
                 "description": "Create new Photo in database",
                 "operationId": "createPhoto",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true                        
-                    },
+                "parameters": [
                     {
                         "name": "photo",
                         "description": "Photo params to create new photo",
@@ -962,10 +709,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Photo Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "New Photo Created"
                     }
                 }
             },
@@ -974,32 +718,16 @@
                 "summary": "Fetch All Photos",
                 "description": "Find all Photo from the database",
                 "operationId": "getallPhoto",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Photo",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "All the Photo"
                     }
                 }
             }
         },
         "/photos/{id}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
+            "parameters": [
                 {                   
                     "name": "id",
                     "in": "path",
@@ -1016,10 +744,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Photo has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Photo has been found"
                     }
                 }
             },
@@ -1036,7 +761,8 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string",
+                                "example": "any"
                             },
                             "title": {
                                 "type": "string",
@@ -1052,10 +778,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Photo has been Updated",
-                        "schema": {
-                            "$ref": "#/components/schemas/Photo"
-                        }
+                        "description": "Photo has been Updated"
                     }
                 }
             },
@@ -1067,10 +790,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Photo has deleted",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Photo has deleted"
                     }
                 }
             }
@@ -1081,30 +801,11 @@
                 "summary": "Get All Profile Data",
                 "description": "Find all users from the database",
                 "operationId": "getAllUser",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Users",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "All the Users"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/400"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -1114,13 +815,7 @@
                 "summary": "Get User Profile Data by Id",
                 "description": "Find single users from the database",
                 "operationId": "getSingleUser",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
+                "parameters": [
                 {             
                     "name": "id",
                     "in": "path",
@@ -1131,20 +826,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Single User",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Single User"
                     }
-                },
-                "401": {
-                    "$ref": "#definitions/responses/401"
-                },
-                "404": {
-                    "$ref": "#definitions/responses/404"
-                },
-                "500": {
-                    "$ref": "#definitions/responses/500"
                 }
 
         },
@@ -1161,7 +844,8 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string",
+                                "example": "any"
                             },
                             "username": {
                                 "type": "string",
@@ -1177,20 +861,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Single User",
-                        "schema": {
-                            "$ref": "#/components/schemas/UserUpdateInput"
-                        }
+                        "description": "Single User"
                     }
-                },
-                "401": {
-                    "$ref": "#definitions/responses/401"
-                },
-                "404": {
-                    "$ref": "#definitions/responses/404"
-                },
-                "500": {
-                    "$ref": "#definitions/responses/500"
                 }
             },
             "delete": {
@@ -1215,20 +887,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Delete User",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Delete User"
                     }
-                },
-                "401": {
-                    "$ref": "#definitions/responses/401"
-                },
-                "404": {
-                    "$ref": "#definitions/responses/404"
-                },
-                "500": {
-                    "$ref": "#definitions/responses/500"
                 }
             },
             "patch": {
@@ -1244,7 +904,8 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string",
+                                "example": "any"
                             },
                             "username": {
                                 "type": "string",
@@ -1264,20 +925,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "User Data",
-                        "schema": {
-                            "$ref": "#/components/schemas/UserPartialUpdateInput"
-                        }
+                        "description": "User Data"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         }
@@ -1287,10 +936,7 @@
             "required": true,
             "in": "path",
             "name": "id",
-            "description": "Item By Id",
-            "schema": {
-                "$ref": "#/components/schemas/Id"
-            }
+            "description": "Item By Id"
         },
     "difinitions": {
         "type": "object",
@@ -1309,7 +955,8 @@
             "type": "object",
             "properties": {
                 "ingredientId": {
-                    "$ref": "#/components/schemas/Id"
+                    "type": "string",
+                    "example": "any"
                 },
                 "description": {
                     "type": "string",
@@ -1325,7 +972,8 @@
             "type": "object",
             "properties": {
                 "userId": {
-                    "$ref": "#/components/schemas/Id"
+                    "type": "string",
+                    "example": "any"
                 },
                 "recipe info": {
                     "schema": {
@@ -1368,7 +1016,8 @@
             "type": "object",
             "properties": {
                 "objectId": {
-                    "$ref": "#/components/schemas/Id"
+                    "type": "string",
+                    "example": "any"
                 },
                 "title": {
                     "type": "object",
