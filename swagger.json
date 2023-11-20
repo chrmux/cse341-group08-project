@@ -43,16 +43,19 @@
             "description": "User Endpoints (Admin + Public)"
         }
     ],
-    "components": {
-        "securitySchemes": {
-            "bearerAuth": {
-              "type": "http",
-              "scheme": "bearer",
-              "bearerFormat": "JWT"
-            }
+    "securityDefinitions": {
+        "oauth2": {
+          "type": "oauth2",
+          "flow": "implicit",
+          "authorization": "/oauth/authorize",
+          "token": "/oauth/token",
+          "scopes": {
+            "read": "Grants read access"
           }
-        },
-    "schemes": ["http", "https"],
+        }
+      },
+    "host": "cse341-group08-project.onrender.com/api-docs",
+    "schemes": ["https"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
@@ -179,12 +182,10 @@
                                     "type": "string"
                                 },
                                 "ingredients": {
-                                    "type": "string",
-                                    "example": "any"
+                                    "type": "string"
                                 },
                                 "instruction": {
-                                    "type": "string",
-                                    "example": "Boil water"
+                                    "type": "string"
                                 },
                                 "creator": {
                                     "type": "string",
@@ -193,20 +194,16 @@
                                     }
                                 },
                                 "keywords": {
-                                    "type": "string",
-                                    "example": "Boil water"
+                                    "type": "string"
                                 },
                                 "culture": {
-                                    "type": "string",
-                                    "example": "culture"
+                                    "type": "string"
                                 },
                                 "level": {
-                                    "type": "string",
-                                    "example": "level"
+                                    "type": "string"
                                 },
                                 "description": {
-                                    "type": "string",
-                                    "example": "description"
+                                    "type": "string"
                                 }
                             }
                         }
@@ -222,10 +219,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Recipe Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "New Recipe Created"
                     }
                 }
             },
@@ -234,34 +228,15 @@
                 "summary": "Fetch All Recipes",
                 "description": "Find all Recipes from the database",
                 "operationId": "getallRecipe",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Recipe",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "ok"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
-        "/recipes/{id}":{
+        "/recipes/id":{
             "get": {
                 "tags": ["Recipes"],
                 "summary": "Fetch item by Id",
@@ -272,9 +247,7 @@
                     "name": "id",
                     "in": "path",
                     "required": "true",
-                    "description": "Id of the recipe",
-                    "type": "String"
-
+                    "description": "Id of the recipe"
                 },
                 {
                     "name": "authorization",
@@ -286,20 +259,8 @@
             ],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Recipe has been found"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
             "put": {
@@ -315,7 +276,7 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string"
                             },
                             "photo": {
                                 "type": "string",
@@ -335,8 +296,8 @@
                             },
                             "creator": {
                                 "type": "string",
-                                "schema": {
-                                    "$ref": "#/components/schemas/Id"
+                                "id": {
+                                    "type": "string"
                                 }
                             },
                             "keywords": {
@@ -357,20 +318,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been Updated",
-                        "schema": {
-                            "$ref": "#"
-                        }
+                        "description": "Recipe has been Updated"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
     "delete": {
@@ -397,20 +346,8 @@
         ],
             "responses": {
                 "200": {
-                    "description": "Recipe has deleted",
-                    "schema": {
-                        "$ref": "#/components/schemas/Id"
-                    }
+                    "description": "Recipe has deleted"
                 }
-            },
-            "401": {
-                "$ref": "#/components/responses/401"
-            },
-            "404": {
-                "$ref": "#/components/responses/404"
-            },
-            "500": {
-                "$ref": "#/components/responses/500"
             }
         }
     },
@@ -439,20 +376,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Name"
-                        }
+                        "description": "Recipe has been found"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -481,20 +406,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/id"
-                        }
+                        "description": "Recipe has been found"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -534,10 +447,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Keyword Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "New Keyword Created"
                     }
                 }
             },
@@ -556,10 +466,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the keyword",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "ok"
                     }
                 }
             }
@@ -588,10 +495,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Keyword has been found"
                     }
                 }
             },
@@ -608,7 +512,7 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string"
                             },
                             "classification": {
                                 "type": "string",
@@ -624,10 +528,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has been Updated",
-                        "schema": {
-                            "$ref": "#/components/schemas/Keyword"
-                        }
+                        "description": "Keyword has been Updated"
                     }
                 }
             },
@@ -639,10 +540,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has deleted",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Keyword has deleted"
                     }
                 }
             }            
@@ -671,10 +569,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Keyword has been found"
                     }
                 }
             }
@@ -720,20 +615,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Ingredient Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "New Ingredient Created"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
             "get": {
@@ -751,20 +634,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Ingredients",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "All the Ingredients"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -792,20 +663,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Ingredient has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "Ingredient has been found"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
             "put": {
@@ -821,7 +680,7 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string"
                             },
                             "name": {
                                 "type": "string",
@@ -842,20 +701,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Ingredient has been Updated",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "Ingredient has been Updated"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             },
             "delete": {
@@ -866,40 +713,29 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Ingredient has deleted",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Ingredient has deleted"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/404"
                 }
             }
             
         },
         "/ingredients/{name}": {
-            "parameters": [{
-                    "name": "name",
-                    "in": "path",
-                    "required": "true",
-                    "description": "name of the ingredient",
-                    "type": "String"
-
-                },
+            "parameters": [
                 {
                     "name": "authorization",
                     "description": "Access token to authorize the user",
                     "in": "header",
                     "type": "string",
                     "required": true
+                },{
+                    "name": "name",
+                    "in": "path",
+                    "required": "true",
+                    "description": "name of the ingredient",
+                    "type": "String"
+
                 }
+                
             ],
             "get": {
                 "tags": ["Ingredients"],
@@ -909,20 +745,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "ingredients has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
+                        "description": "ingredients has been found"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -962,10 +786,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Photo Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "New Photo Created"
                     }
                 }
             },
@@ -984,11 +805,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Photo",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
+                        "description": "All the Photo"
+                    } 
                 }
             }
         },
@@ -1016,10 +834,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Photo has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Photo has been found"
                     }
                 }
             },
@@ -1036,7 +851,7 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string"
                             },
                             "title": {
                                 "type": "string",
@@ -1052,10 +867,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Photo has been Updated",
-                        "schema": {
-                            "$ref": "#/components/schemas/Photo"
-                        }
+                        "description": "Photo has been Updated"
                     }
                 }
             },
@@ -1067,10 +879,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Photo has deleted",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Photo has deleted"
                     }
                 }
             }
@@ -1091,20 +900,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Users",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Found All the Users"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/400"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         },
@@ -1131,20 +928,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Single User",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Found User"
                     }
-                },
-                "401": {
-                    "$ref": "#definitions/responses/401"
-                },
-                "404": {
-                    "$ref": "#definitions/responses/404"
-                },
-                "500": {
-                    "$ref": "#definitions/responses/500"
                 }
 
         },
@@ -1161,7 +946,7 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string"
                             },
                             "username": {
                                 "type": "string",
@@ -1177,20 +962,8 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Single User",
-                        "schema": {
-                            "$ref": "#/components/schemas/UserUpdateInput"
-                        }
+                        "description": "User Data Updated"
                     }
-                },
-                "401": {
-                    "$ref": "#definitions/responses/401"
-                },
-                "404": {
-                    "$ref": "#definitions/responses/404"
-                },
-                "500": {
-                    "$ref": "#definitions/responses/500"
                 }
             },
             "delete": {
@@ -1215,21 +988,10 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Delete User",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                        "description": "Delete User"
                     }
-                },
-                "401": {
-                    "$ref": "#definitions/responses/401"
-                },
-                "404": {
-                    "$ref": "#definitions/responses/404"
-                },
-                "500": {
-                    "$ref": "#definitions/responses/500"
                 }
+                
             },
             "patch": {
                 "tags": ["Users"],
@@ -1244,7 +1006,7 @@
                         "type": "object",
                         "properties": {
                             "id": {
-                                "$ref": "#/components/schemas/Id"
+                                "type": "string"
                             },
                             "username": {
                                 "type": "string",
@@ -1264,303 +1026,207 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "User Data",
-                        "schema": {
-                            "$ref": "#/components/schemas/UserPartialUpdateInput"
-                        }
+                        "description": "Data Updated"
                     }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
                 }
             }
         }
     },
-    "parameters": {
-        "IdParams": {
-            "required": true,
-            "in": "path",
-            "name": "id",
-            "description": "Item By Id",
-            "schema": {
-                "$ref": "#/components/schemas/Id"
+    "definitions": {
+        "securityDefinitions": {
+            "oauth2": {
+              "type": "oauth2",
+              "flow": "implicit",
+              "authorizationUrl": "https://your-auth-server.com/oauth/authorize",
+              "scopes": {
+                "read": "Grants read access"
+              }
             }
-        },
-    "difinitions": {
-        "type": "object",
-      "required": ["password", "username"],
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "schemas": {
-        "Ingredients": {
-            "type": "object",
-            "properties": {
-                "ingredientId": {
-                    "$ref": "#/components/schemas/Id"
-                },
-                "description": {
-                    "type": "string",
-                    "example": "any"
-                },
-                "category": {
-                    "type": "object",
-                    "example": "any"
-                }
-            }
-        },
-        "Recipes": {
-            "type": "object",
-            "properties": {
-                "userId": {
-                    "$ref": "#/components/schemas/Id"
-                },
-                "recipe info": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "photo": {
-                                "type": "string"
-                            },
-                            "title": {
-                                "type": "string"
-                            },
-                            "ingredients": {
-                                "type": "string"
-                            },
-                            "instruction": {
-                                "type": "string"
-                            },
-                            "creator": {
-                                "type": "array"
-                                
-                            },
-                            "keywords": {
-                                "type": "string"
-                            },
-                            "Culture": {
-                                "type": "string"
-                            },
-                            "level": {
-                                "type": "string"
-                            },
-                            "description": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "Photo": {
-            "type": "object",
-            "properties": {
-                "objectId": {
-                    "$ref": "#/components/schemas/Id"
-                },
-                "title": {
-                    "type": "object",
-                    "example": "any"
-                },
-                "photoUrl": {
-                    "type": "string",
-                    "example": "any"
-                }
-            }
-        },
-        "Id": {
-            "type": "string",
-            "example": "550e8400-e29b-41d4-a716-446655440000"
-        },
-        "Name": {
-            "type": "string",
-            "example": "Pork Adobo"
-        },
-        "keyword": {
-            "type": "string",
-            "example": "any"
-        },
+          },
         "User": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "example": "user123"
-                },
-                "roles": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "admin",
-                            "user"
-                        ],
-                        "default": "user"
-                    }
-                },
-                "password": {
-                    "type": "String",
-                    "example": "any"
-                }
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "username": {
+              "type": "string"
             }
+          }
         },
-        "UserUpdateInput": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "example": "new_user123"
-                },
-                "roles": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "admin",
-                            "user"
-                        ],
-                        "default": "user"
-                    }
-                }
+      "ingredients": {
+        "type": "object",
+        "properties": {
+            "ingredientId": {
+                "type": "string",
+                "example": "any"
+            },
+            "description": {
+                "type": "string",
+                "example": "any"
+            },
+            "category": {
+                "type": "object",
+                "example": "any"
             }
-        },
-        "UserPartialUpdateInput": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "roles": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "admin",
-                            "user"
-                        ],
-                        "default": "user"
+        }
+    },
+    "recipes": {
+        "type": "object",
+        "properties": {
+            "userId": {
+                "type": "string",
+                "example": "any"
+            },
+            "recipe info": {
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "photo": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "ingredients": {
+                            "type": "string"
+                        },
+                        "instruction": {
+                            "type": "string"
+                        },
+                        "creator": {
+                            "type": "array"
+                            
+                        },
+                        "keywords": {
+                            "type": "string"
+                        },
+                        "Culture": {
+                            "type": "string"
+                        },
+                        "level": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        }
                     }
-                },
-                "currentPassword": {
-                    "type": "string",
-                    "format": "password"
-                },
-                "newPassword": {
-                    "type": "string",
-                    "format": "password"
                 }
             }
         }
     },
-    "responses": {
-        "400": {
-            "description": "Bad Request",
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "code": {
-                                "type": "number",
-                                "example": 400
-                            },
-                            "message": {
-                                "type": "string",
-                                "example": "Bad Request"
-                            },
-                            "errors": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "field": {
-                                            "type": "string",
-                                            "example": "email"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Email Field is Required"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+    "photo": {
+        "type": "object",
+        "properties": {
+            "objectId": {
+                "type": "string",
+                "example": "any"
+            },
+            "title": {
+                "type": "object",
+                "example": "any"
+            },
+            "photoUrl": {
+                "type": "string",
+                "example": "any"
+            }
+        }
+    },
+      "credentials": {
+        "type": "object",
+        "required": ["password", "username"],
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Id": {
+        "type": "string",
+        "example": "550e8400-e29b-41d4-a716-446655440000"
+    },
+    "name": {
+        "type": "string",
+        "example": "Pork Loin Ribs"
+    },
+    "keyword": {
+        "type": "string",
+        "example": "Paleo"
+    },
+    "userInput": {
+        "type": "object",
+        "parameters": {
+            "name": {
+                "type": "string",
+                "example": "user123"
+            },
+            "roles": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "admin",
+                        "user"
+                    ],
+                    "default": "user"
+                }
+            },
+            "password": {
+                "type": "String",
+                "example": "123456789"
+            }
+        }
+    },
+    "UserUpdateInput": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "example": "new_user123"
+            },
+            "roles": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "admin",
+                        "user"
+                    ],
+                    "default": "user"
                 }
             }
-        },
-        "401": {
-            "description": "Unauthorized",
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "code": {
-                                "type": "integer",
-                                "example": 401
-                            },
-                            "message": {
-                                "type": "string",
-                                "example": "Access denied. You do not have permission to perform this operation."
-                            }
-                        }
-                    }
+        }
+    },
+    "UserPartialUpdateInput": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "roles": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "admin",
+                        "user"
+                    ],
+                    "default": "user"
                 }
+            },
+            "currentPassword": {
+                "type": "string",
+                "format": "password"
+            },
+            "newPassword": {
+                "type": "string",
+                "format": "password"
             }
-        },
-        "404": {
-            "description": "Not Found",
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "code": {
-                                "type": "integer",
-                                "format": "int32",
-                                "example": 404
-                            },
-                            "message": {
-                                "type": "string",
-                                "example": "Your Requested Item Not Found"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "500": {
-            "description": "Internal Server Error",
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "code": {
-                                "type": "number",
-                                "example": 500
-                            },
-                            "message": {
-                                "type": "string",
-                                "example": "An unexpected error occurred while processing your request. Please try again later."
-                            }
-                        }
-                    }
-                }
-            }
-        }}
+        }
     }
+  }
 }
+
