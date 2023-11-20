@@ -51,7 +51,6 @@
           }
         }
       },
-    "host": "cse341-group08-project.onrender.com/api-docs",
     "schemes": ["https"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
@@ -226,9 +225,10 @@
                 "description": "Find all Recipes from the database",
                 "operationId": "getallRecipe",
                 "produces": ["application/json"],
+                "parameters": [],
                 "responses": {
                     "200": {
-                        "description": "ok"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -256,7 +256,7 @@
             ],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been found"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -315,7 +315,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been Updated"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -343,7 +343,7 @@
         ],
             "responses": {
                 "200": {
-                    "description": "Recipe has deleted"
+                    "description": "successful operation"
                 }
             }
         }
@@ -373,7 +373,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been found"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -403,7 +403,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Recipe has been found"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -444,7 +444,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Keyword Created"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -463,7 +463,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "ok"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -492,7 +492,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has been found"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -537,7 +537,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has deleted"
+                        "description": "successful operation"
                     }
                 }
             }            
@@ -566,7 +566,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Keyword has been found"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -612,7 +612,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Ingredient Created"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -631,7 +631,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Ingredients"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -660,7 +660,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Ingredient has been found"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -698,7 +698,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Ingredient has been Updated"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -710,7 +710,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Ingredient has deleted"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -742,7 +742,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "ingredients has been found"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -783,7 +783,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "New Photo Created"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -802,7 +802,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "All the Photo"
+                        "description": "successful operation"
                     } 
                 }
             }
@@ -831,7 +831,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Photo has been found"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -864,7 +864,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Photo has been Updated"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -876,7 +876,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Photo has deleted"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -897,7 +897,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Found All the Users"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -925,7 +925,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Found User"
+                        "description": "successful operation"
                     }
                 }
 
@@ -959,7 +959,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "User Data Updated"
+                        "description": "successful operation"
                     }
                 }
             },
@@ -985,7 +985,7 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Delete User"
+                        "description": "successful operation"
                     }
                 }
                 
@@ -1023,23 +1023,13 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "Data Updated"
+                        "description": "successful operation"
                     }
                 }
             }
         }
     },
     "definitions": {
-        "securityDefinitions": {
-            "oauth2": {
-              "type": "oauth2",
-              "flow": "implicit",
-              "authorizationUrl": "https://your-auth-server.com/oauth/authorize",
-              "scopes": {
-                "read": "Grants read access"
-              }
-            }
-          },
         "User": {
           "type": "object",
           "properties": {
