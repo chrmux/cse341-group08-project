@@ -8,7 +8,7 @@ const getIngredients = async (req, res, next) => {
     const result = await mongodb
       .getDb()
       .db("Group08-Project03")
-      .collection("Ingredients")
+      .collection("ingredients")
       .find();
     result.toArray().then((lists) => {
       res.setHeader("Content-Type", "application/json");

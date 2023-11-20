@@ -40,17 +40,6 @@
             "description": "User Endpoints (Admin + Public)"
         }
     ],
-    "securityDefinitions": {
-        "oauth2": {
-          "type": "oauth2",
-          "flow": "implicit",
-          "authorization": "/oauth/authorize",
-          "token": "/oauth/token",
-          "scopes": {
-            "read": "Grants read access"
-          }
-        }
-      },
     "schemes": ["https"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
@@ -185,8 +174,8 @@
                                 },
                                 "creator": {
                                     "type": "string",
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Id"
+                                    "id": {
+                                        "type": "string"
                                     }
                                 },
                                 "keywords": {
@@ -1216,4 +1205,3 @@
     }
   }
 }
-
