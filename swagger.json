@@ -535,15 +535,7 @@
                 "summary": "Fetch All Ingredients",
                 "description": "Find all ingredients from the database",
                 "operationId": "getIngredients",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": "true",
-                        "description": "id of the Ingredient",
-                        "type": "String"
-                    }
-                ],
+                "parameters": [],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -559,6 +551,16 @@
                 "description": "Find one from the database",
                 "operationId": "getIngredientsById",
                 "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "id of the Ingredient",
+                        "type": "String"
+                    }
+
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation"
