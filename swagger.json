@@ -74,28 +74,12 @@
                             }
                         }
                     }
-                  }
+                }
                 ],
                 "responses": {
                   "201": {
-                    "description": "successfully created user",
-                    "schema": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer",
-                          "format": "int64"
-                        },
-                        "name": {
-                          "type": "string",
-                          "example": "any"
-                        }
-                      }
+                    "description": "successfully created user"
                     }
-                  },
-                  "400": {
-                    "description": "Invalid theme name value"
-                  }
                 }
               }
             },
@@ -123,25 +107,7 @@
                   ],
                   "responses": {
                     "200": {
-                      "description": "successful operation",
-                      "headers": {
-                        "X-Rate-Limit": {
-                          "type": "integer",
-                          "format": "int32",
-                          "description": "calls per hour allowed by the user"
-                        },
-                        "X-Expires-After": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "date in UTC when token expires"
-                        }
-                      },
-                      "schema": {
-                        "type": "string"
-                      }
-                    },
-                    "400": {
-                      "description": "Invalid username/password supplied"
+                      "description": "successful operation"                     
                     }
                   }
                 }
@@ -192,13 +158,6 @@
                                 }
                             }
                         }
-                    },
-                    {
-                        "name": "authorization",
-                        "description": "Access token to authorize the user",
-                        "in": "header",
-                        "type": "string",
-                        "required": true
                     }
                 ],
                 "produces": ["application/json"],
@@ -234,13 +193,6 @@
                     "in": "path",
                     "required": "true",
                     "description": "Id of the recipe"
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
                 }
             ],
                 "responses": {
@@ -254,7 +206,15 @@
                 "summary": "Update Recipe Data",
                 "description": "Update the existing Recipe in database",
                 "operationId": "updateRecipe",
-                "parameters": [{
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "id of the recipe",
+                        "type": "String"
+    
+                    },{
                     "name": "recipes",
                     "description": "Recipe params to update the recipe",
                     "in": "body",
@@ -321,13 +281,6 @@
                 "description": "Id of the recipe",
                 "type": "String"
 
-            },
-            {
-                "name": "authorization",
-                "description": "Access token to authorize the user",
-                "in": "header",
-                "type": "string",
-                "required": true
             }
         ],
             "responses": {
@@ -345,13 +298,6 @@
                     "description": "name of the recipe",
                     "type": "String"
 
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
                 }
             ],
             "get": {
@@ -375,13 +321,6 @@
                     "description": "keyword of the recipe",
                     "type": "String"
 
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
                 }
             ],
             "get": {
@@ -403,13 +342,7 @@
                 "summary": "Create a Keyword",
                 "description": "Create new keyword in database",
                 "operationId": "createKeyword",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true                        
-                    },
+                "parameters": [
                     {
                         "name": "keywords",
                         "description": "Keyword params to create new keyword",
@@ -442,13 +375,7 @@
                 "summary": "Fetch all keywords",
                 "description": "Find all keyword from the database",
                 "operationId": "getallKeyword",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
+                "parameters": [],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -457,28 +384,23 @@
                 }
             }
         },
-        "/keywords/{id}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
-                {                   
-                    "name": "id",
-                    "in": "path",
-                    "required": "true",
-                    "description": "id of the keyword",
-                    "type": "String"
-                }
-            ],
+        "/keywords/{id}": {        
             "get": {
                 "tags": ["Keywords"],
                 "summary": "Fetch keyword by ID",
                 "description": "Find one from the database",
                 "operationId": "getKeywordById",
                 "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "id of the keyword",
+                        "type": "String"
+    
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -490,7 +412,15 @@
                 "summary": " Update Keyword By ID",
                 "description": "Update the existing keyword in database",
                 "operationId": "updateKeywords",
-                "parameters": [{
+                "parameters": [
+                        {                   
+                            "name": "id",
+                            "in": "path",
+                            "required": "true",
+                            "description": "id of the keyword",
+                            "type": "String"
+                        },
+                        {
                     "name": "keyword",
                     "description": "Keyword params to update the keyword",
                     "in": "body",
@@ -524,6 +454,15 @@
                 "description": "Delete keyword from the database",
                 "operationId": "deleteKeywords",
                 "produces": ["application/json"],
+                "parameters": [
+                        {                   
+                            "name": "id",
+                            "in": "path",
+                            "required": "true",
+                            "description": "id of the keyword",
+                            "type": "String"
+                        }
+                    ],
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -532,13 +471,7 @@
             }            
         },
         "/keywords/{classification}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
+            "parameters": [
                 {                   
                     "name": "classification",
                     "in": "path",
@@ -565,15 +498,7 @@
                 "tags": ["Ingredients"],
                 "summary": "Create Ingredients",
                 "description": "Create new Ingredient in database",
-                "parameters": [{
-
-                        "name": "authorization",
-                        "description": "Access token to authorize the user",
-                        "in": "header",
-                        "type": "string",
-                        "required": true
-                        
-                    },
+                "parameters": [
                     {
                         "name": "ingredients",
                         "description": "Ingredient params to create new ingredient",
@@ -610,13 +535,15 @@
                 "summary": "Fetch All Ingredients",
                 "description": "Find all ingredients from the database",
                 "operationId": "getIngredients",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "id of the Ingredient",
+                        "type": "String"
+                    }
+                ],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -626,21 +553,6 @@
             }
         },
         "/ingredients/{id}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
-                {
-                    "name": "id",
-                    "in": "path",
-                    "required": "true",
-                    "description": "id of the Ingredient",
-                    "type": "String"
-                }
-            ],
             "get": {
                 "tags": ["Ingredients"],
                 "summary": "Fetch Ingredient",
@@ -658,7 +570,15 @@
                 "summary": "Update Ingredients",
                 "description": "Update the existing ingredient in database",
                 "operationId": "updateIngredient",
-                "parameters": [{
+                "parameters": [
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "required": "true",
+                            "description": "id of the Ingredient",
+                            "type": "String"
+                        },
+                        {
                     "name": "ingredient",
                     "description": "Ingredient params to update the ingredient",
                     "in": "body",
@@ -707,13 +627,7 @@
         },
         "/ingredients/{name}": {
             "parameters": [
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },{
+               {
                     "name": "name",
                     "in": "path",
                     "required": "true",
@@ -742,13 +656,7 @@
                 "summary": "Create photo",
                 "description": "Create new Photo in database",
                 "operationId": "createPhoto",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true                        
-                    },
+                "parameters": [
                     {
                         "name": "photo",
                         "description": "Photo params to create new photo",
@@ -781,13 +689,7 @@
                 "summary": "Fetch All Photos",
                 "description": "Find all Photo from the database",
                 "operationId": "getallPhoto",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
+                "parameters": [],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -797,27 +699,22 @@
             }
         },
         "/photos/{id}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
-                {                   
-                    "name": "id",
-                    "in": "path",
-                    "required": "true",
-                    "description": "id of the Photo",
-                    "type": "String"
-                }
-            ],
             "get": {
                 "tags": ["Photo"],
                 "summary": "Fetch Photo By ID",
                 "description": "Find one from the database",
                 "operationId": "getPhotoById",
                 "produces": ["application/json"],
+                "parameters": [
+                    {                   
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "id of the Photo",
+                        "type": "String"
+                    }
+
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -829,7 +726,15 @@
                 "summary": "Update Photo By ID",
                 "description": "Update the existing Photo in database",
                 "operationId": "updatePhoto",
-                "parameters": [{
+                "parameters": [
+                        {                   
+                            "name": "id",
+                            "in": "path",
+                            "required": "true",
+                            "description": "id of the Photo",
+                            "type": "String"
+                        }
+                    ,{
                     "name": "photo",
                     "description": "Photo params to update the photo",
                     "in": "body",
@@ -863,6 +768,15 @@
                 "description": "Delete photo from the database",
                 "operationId": "deletePhoto",
                 "produces": ["application/json"],
+                "parameters": [
+                    {                   
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "id of the Photo",
+                        "type": "String"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -876,13 +790,7 @@
                 "summary": "Get All Profile Data",
                 "description": "Find all users from the database",
                 "operationId": "getAllUser",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
+                "parameters": [],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -897,13 +805,7 @@
                 "summary": "Get User Profile Data by Id",
                 "description": "Find single users from the database",
                 "operationId": "getSingleUser",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
+                "parameters": [
                 {             
                     "name": "id",
                     "in": "path",
@@ -924,27 +826,43 @@
                 "summary": "Update User Profile Data",
                 "description": "Update single user from the database",
                 "operationId": "getSingleUser",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "body",
+                "parameters": [
+                    {                   
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "id of the user",
+                        "type": "String"
+                    },
+
+                    {
+                        "name": "id",
+                        "in": "body",          
                     "schema": {
-                        "type": "object",
-                        "properties": {
+                    "type": "object",
+                    "properties": {
                             "id": {
                                 "type": "string"
                             },
                             "username": {
                                 "type": "string",
-                                "example": "any"
+                                "example": "new_user123"
                             },
-                            "email": {
-                                "type": "string",
-                                "example": "any"
+                            "roles": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "admin",
+                                        "user"
+                                    ],
+                                    "default": "user"
+                                }
                             }
                         }
                     }
-                }],
+                            
+                        }],
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
@@ -957,13 +875,7 @@
                 "tags": [
                     "Users"
                 ],
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
+                "parameters": [
                 {             
                     "name": "id",
                     "in": "path",
@@ -984,28 +896,43 @@
                 "summary": "Update User Profile(including Password)",
                 "description": "Update single user from the database",
                 "operationId": "updateUserData",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
+                "parameters": [
+                    {                   
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "id of the user",
+                        "type": "String"
+                    },
+                    {
+                    "name": "user",
+                    "description": "User params to update the user data",
+                    "in": "body",
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "id": {
+                            "username": {
                                 "type": "string"
                             },
-                            "username": {
-                                "type": "string",
-                                "example": "any"
+                            "roles": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "admin",
+                                        "user"
+                                    ],
+                                    "default": "user"
+                                }
                             },
-                            "email": {
+                            "currentPassword": {
                                 "type": "string",
-                                "example": "any"
+                                "format": "password"
                             },
-                            "password": {
+                            "newPassword": {
                                 "type": "string",
-                                "example": "any"
-                            }
+                                "format": "password"
+                            }                
                         }
                     }
                 }],
@@ -1179,7 +1106,7 @@
     "UserPartialUpdateInput": {
         "type": "object",
         "properties": {
-            "name": {
+            "username": {
                 "type": "string"
             },
             "roles": {
