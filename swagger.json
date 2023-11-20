@@ -9,10 +9,7 @@
             "url": "https://github.com/chrmux/cse341-group08-project"
         }
     },
-    "servers": [{
-            "url": "http://localhost:8080/api-docs",
-            "description": "Local development server"
-        },
+    "server": [
         {
             "url": "https://cse341-group08-project.onrender.com/api-docs",
             "description": "Live server"
