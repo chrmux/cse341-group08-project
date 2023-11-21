@@ -7,7 +7,7 @@ const getKeywords = async (req, res, next) => {
     const result = await mongodb
       .getDb()
       .db("Group08-Project03")
-      .collection("keywords") /* if k in "keywords" is uppercase get result will return empty*/
+      .collection("Keywords") /* if k in "keywords" is uppercase get result will return empty*/
       .find();
     result.toArray().then((lists) => {
       res.setHeader("Content-Type", "application/json");

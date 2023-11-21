@@ -40,7 +40,6 @@
             "description": "User Endpoints (Admin + Public)"
         }
     ],
-    "schemes": ["https"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
