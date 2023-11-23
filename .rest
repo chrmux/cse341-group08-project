@@ -10,3 +10,7 @@ GET http://localhost:8080/recipes HTTP/1.1
 ###
 GET http://localhost:8080/keywords HTTP/1.1
 
+###
+DELETE http://localhost:8080/recipes/655f46995f6c39a36250ee22
+
+
