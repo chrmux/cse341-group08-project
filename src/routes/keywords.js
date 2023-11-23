@@ -4,5 +4,6 @@ const keywordController = require('../controllers/keyword');
 
 router.get('/', keywordController.getKeywords);
 
+router.get('/:_id', keywordController.getKeywordById);
 
 module.exports = router;

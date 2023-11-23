@@ -5,11 +5,16 @@ const ObjectId = require("mongodb").ObjectId;
 const getIngredients = async (req, res, next) => {
   console.log("In get ingredients");
   try {
+      const query = {};
+    if(req.body.name) {
+        query.name = req.body.name;
+    }
+
     const result = await mongodb
       .getDb()
       .db("Group08-Project03")
-      .collection("Ingredients")
-      .find();
+      .collection("Ingredients") /* if i in "ingredients" is uppercase get result will return empty*/ 
+      .find(query);
     result.toArray().then((lists) => {
       res.setHeader("Content-Type", "application/json");
       res.status(200).json(lists);
@@ -20,6 +25,28 @@ const getIngredients = async (req, res, next) => {
   }
 };
 
+const getIngredientById = async (req, res, next) => {
+    console.log("In get Ingredient by ID");
+    // console.log(req.params);
+    // console.log(req.params._id);
+    try {
+        if(!req.params['_id']) {
+            console.error("Lack of _id error in get ingredient by id");
+        };
+        let query = {'_id': new ObjectId(req.params['_id'])};
+
+        const result = await mongodb.getDb().db('Group08-Project03').collection('Ingredients').find(query);
+        result.toArray().then((lists) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(lists);
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(400).json("Error in Get Ingredient by ID");
+    }
+};
+
 module.exports = {
   getIngredients,
+  getIngredientById
 };
