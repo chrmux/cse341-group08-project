@@ -8,7 +8,7 @@ const getRecipes = async (req, res, next) => {
     const result = await mongodb
       .getDb()
       .db("Group08-Project03")
-      .collection("recipes") /* if r in "recipes" is uppercase get result will return empty*/
+      .collection("Recipes") 
       .find();
     result.toArray().then((lists) => {
       res.setHeader("Content-Type", "application/json");

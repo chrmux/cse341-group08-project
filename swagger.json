@@ -40,7 +40,7 @@
             "description": "User Endpoints (Admin + Public)"
         }
     ],
-    "schemes": ["https"],
+    "schemes": ["http"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
@@ -133,10 +133,10 @@
                                     "type": "string"
                                 },
                                 "ingredients": {
-                                    "type": "string"
+                                    "type": "array"
                                 },
                                 "instruction": {
-                                    "type": "string"
+                                    "type": "array"
                                 },
                                 "creator": {
                                     "type": "string",
@@ -148,7 +148,7 @@
                                     "type": "string"
                                 },
                                 "culture": {
-                                    "type": "string"
+                                    "type": "array"
                                 },
                                 "level": {
                                     "type": "string"
