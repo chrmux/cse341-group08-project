@@ -4,8 +4,6 @@ const router = express.Router();
 
 router.use('/', require('./swagger'));
 //router.use('/users', require('./users'));
-//router.use('/recipes', require('./recipes'));
-//router.use('/ingredients', require('./ingredients'));
 router.use('/keywords', require('./keywords'));
 router.use('/ingredients', require('./ingredients'));
 router.use('/recipes', require('./recipes'));
