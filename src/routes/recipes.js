@@ -1,10 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router({ mergeParams: true });
-const recipesController = require('../controllers/recipes');
+const recipesController = require("../controllers/recipes");
 
-router.get('/', recipesController.getRecipes);
+router.get("/", recipesController.getRecipes);
 
-router.get('/:_id', recipesController.getRecipeById);
-
+// Route to delete a recipe by ID
+router.delete("/:id", recipesController.deleteRecipe);
+router.get("/:_id", recipesController.getRecipeById);
 
 module.exports = router;
