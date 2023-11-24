@@ -132,10 +132,10 @@
                                     "type": "string"
                                 },
                                 "ingredients": {
-                                    "type": "string"
+                                    "type": "array"
                                 },
                                 "instruction": {
-                                    "type": "string"
+                                    "type": "array"
                                 },
                                 "creator": {
                                     "type": "string",
@@ -147,7 +147,7 @@
                                     "type": "string"
                                 },
                                 "culture": {
-                                    "type": "string"
+                                    "type": "array"
                                 },
                                 "level": {
                                     "type": "string"
@@ -211,7 +211,7 @@
                         "in": "path",
                         "required": "true",
                         "description": "id of the recipe",
-                        "type": "String"
+                        "type": "string"
     
                     },{
                     "name": "recipes",
@@ -278,7 +278,7 @@
                 "in": "path",
                 "required": "true",
                 "description": "Id of the recipe",
-                "type": "String"
+                "type": "string"
 
             }
         ],
@@ -295,7 +295,7 @@
                     "in": "path",
                     "required": "true",
                     "description": "name of the recipe",
-                    "type": "String"
+                    "type": "string"
 
                 }
             ],
@@ -318,7 +318,7 @@
                     "in": "path",
                     "required": "true",
                     "description": "keyword of the recipe",
-                    "type": "String"
+                    "type": "string"
 
                 }
             ],
@@ -396,7 +396,7 @@
                         "in": "path",
                         "required": "true",
                         "description": "id of the keyword",
-                        "type": "String"
+                        "type": "string"
     
                     }
                 ],
@@ -417,7 +417,7 @@
                             "in": "path",
                             "required": "true",
                             "description": "id of the keyword",
-                            "type": "String"
+                            "type": "string"
                         },
                         {
                     "name": "keyword",
@@ -459,7 +459,7 @@
                             "in": "path",
                             "required": "true",
                             "description": "id of the keyword",
-                            "type": "String"
+                            "type": "string"
                         }
                     ],
                 "responses": {
@@ -476,7 +476,7 @@
                     "in": "path",
                     "required": "true",
                     "description": "classification of the keyword",
-                    "type": "String"
+                    "type": "string"
                 }
             ],
             "get": {
@@ -556,7 +556,7 @@
                         "in": "path",
                         "required": "true",
                         "description": "id of the Ingredient",
-                        "type": "String"
+                        "type": "string"
                     }
 
                 ],
@@ -577,7 +577,7 @@
                             "in": "path",
                             "required": "true",
                             "description": "id of the Ingredient",
-                            "type": "String"
+                            "type": "string"
                         },
                         {
                     "name": "ingredient",
@@ -633,7 +633,7 @@
                     "in": "path",
                     "required": "true",
                     "description": "name of the ingredient",
-                    "type": "String"
+                    "type": "string"
 
                 }
                 
@@ -712,7 +712,7 @@
                         "in": "path",
                         "required": "true",
                         "description": "id of the Photo",
-                        "type": "String"
+                        "type": "string"
                     }
 
                 ],
@@ -733,7 +733,7 @@
                             "in": "path",
                             "required": "true",
                             "description": "id of the Photo",
-                            "type": "String"
+                            "type": "string"
                         }
                     ,{
                     "name": "photo",
@@ -775,7 +775,7 @@
                         "in": "path",
                         "required": "true",
                         "description": "id of the Photo",
-                        "type": "String"
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -812,7 +812,7 @@
                     "in": "path",
                     "required": "true",
                     "description": "id of the User",
-                    "type": "String"   
+                    "type": "string"   
                 }],
                 "produces": ["application/json"],
                 "responses": {
@@ -833,7 +833,7 @@
                         "in": "path",
                         "required": "true",
                         "description": "id of the user",
-                        "type": "String"
+                        "type": "string"
                     },
 
                     {
@@ -882,7 +882,7 @@
                     "in": "path",
                     "required": "true",
                     "description": "id of the User",
-                    "type": "String"   
+                    "type": "string"   
                 }],
                 "produces": ["application/json"],
                 "responses": {
@@ -903,7 +903,7 @@
                         "in": "path",
                         "required": "true",
                         "description": "id of the user",
-                        "type": "String"
+                        "type": "string"
                     },
                     {
                     "name": "user",
@@ -1079,7 +1079,7 @@
                 }
             },
             "password": {
-                "type": "String",
+                "type": "string",
                 "example": "123456789"
             }
         }

@@ -5,5 +5,6 @@ const keywordController = require("../controllers/keyword");
 router.get("/", keywordController.getKeywords);
 
 router.delete("/:id", keywordController.deleteKeyword);
+router.get("/:_id", keywordController.getKeywordById);
 
 module.exports = router;
