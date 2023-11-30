@@ -1,20 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { signUp, login } = require('../../src/controllers/user');
-const userController = require('../controllers/user');
+const { signUp, login } = require("../../src/controllers/user");
+const userController = require("../controllers/user");
 
 //get all users for admin only
-router.get('/', userController.getUsers);
+router.get("/", userController.getUsers);
 
 //get user by email
-router.get('/email', userController.getUserByEmail);
+router.get("/email", userController.getUserByEmail);
 
 //get user by password
-router.get('/password', userController.getUserByPassword);
+router.get("/password", userController.getUserByPassword);
 
 //get user by id
-router.get('/:_id', userController.getUserByID);
+router.get("/:_id", userController.getUserByID);
 
+router.delete("/:id", userController.deleteUser);
 
 // router.post('/signup', signUp);
 // router.post('/login', login);

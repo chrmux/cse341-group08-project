@@ -19,6 +19,10 @@ DELETE http://localhost:8080/keywords/655f5c0f5f6c39a36250ee24
 ###
 DELETE http://localhost:8080/ingredients/655f5d6f5f6c39a36250ee27
 
+###
+DELETE http://localhost:8080/user/65691408c0a1f9040d3a6ef3
+
+
 
 
 
