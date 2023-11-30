@@ -7,6 +7,7 @@ router.use('/', require('./swagger'));
 router.use('/keywords', require('./keywords'));
 router.use('/ingredients', require('./ingredients'));
 router.use('/recipes', require('./recipes'));
+router.use('/user', require('./users'));
 
 router.use((req, res, next) => {
     const error = new Error("Route not found");
