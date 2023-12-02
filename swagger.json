@@ -141,10 +141,10 @@
                 "type": "string"
               },
               "ingredients": {
-                "type": "array"
+                "type":"string"
               },
               "instruction": {
-                "type": "array"
+                "type": "string"
               },
               "creator": {
                 "type": "string",
