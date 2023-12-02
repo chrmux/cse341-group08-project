@@ -15,7 +15,7 @@ const getIngredients = async (req, res, next) => {
       .db("Group08-Project03")
       .collection(
         "Ingredients"
-      ) /* if i in "ingredients" is uppercase get result will return empty*/
+      )
       .find(query);
     result.toArray().then((lists) => {
       res.setHeader("Content-Type", "application/json");

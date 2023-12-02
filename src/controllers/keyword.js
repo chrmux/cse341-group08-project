@@ -15,7 +15,7 @@ const getKeywords = async (req, res, next) => {
       .db("Group08-Project03")
       .collection(
         "Keywords"
-      ) /* if k in "keywords" is uppercase get result will return empty*/
+      )
       .find(query);
     result.toArray().then((lists) => {
       res.setHeader("Content-Type", "application/json");
