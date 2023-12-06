@@ -1,0 +1,72 @@
+[{
+    "photo": "null",
+    "title": "",
+    "ingredients": [],
+    "instructions": [],
+    "creator": "Jadyn Iverson",
+    "keywords": [],
+    "culture": "",
+    "level": "",
+    "description": ""
+},{
+    "photo": "null",
+    "title": "Cabbage Roll Soup",
+    "ingredients": [
+        {
+            "id": "656a491a6830ef20a83635f0",
+            "name": "Ground Beef",
+            "quantity": "1 lb"
+        },{
+            "id": "6553e86d2cc92b36dcf46bdf",
+            "name": "Onion",
+            "quantity": "1"
+        },{
+            "id": "656a5ecd930a53a9be9d50c3",
+            "name": "Green Cabbage",
+            "quantity": "4 Cups"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba3",
+            "name": "Carrots",
+            "quantity": "2-6"
+        },{
+            "id": "656a491a6830ef20a83635f6",
+            "name": "Beef Broth",
+            "quantity": "8 Cups - 2 boxes"
+        },{
+            "id": "656a5ecd930a53a9be9d50c4",
+            "name": "Tomato Sauce",
+            "quantity": "2 Cans"
+        },{
+            "id": "656a5ecd930a53a9be9d50c5",
+            "name": "Long Grain Rice",
+            "quantity": "1/2 Cup"
+        },{
+            "id": "656a5ecd930a53a9be9d50c6",
+            "name": "Bay Leaf",
+            "quantity": "1"
+        },{
+            "id": "656a5ecd930a53a9be9d50c7",
+            "name": "Brown Sugar",
+            "quantity": "2 Tablespoons"
+        },{
+            "id": "656a5ecd930a53a9be9d50c8",
+            "name": "Parsley",
+            "quantity": "2 Tablespoons" 
+        }
+    ],
+    "instructions": [
+        "Brown meat in a large sauce pan.",
+        "Cut, add, and cook onion.",
+        "crush and add garlic. Cook a minute or until fragrent.",
+        "Add everything else.",
+        "Bring to a simmer and cook 25 minutes.",
+        "Take off heat, add parsley, serve."
+    ],
+    "creator": "Jadyn Iverson",
+    "keywords": [
+        "Soup"
+    ],
+    "culture": "American",
+    "level": "Simple",
+    "description": "A warm soup with lots of veggies."
+}]

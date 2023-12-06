@@ -119,4 +119,134 @@
     "Culture": "American",
     "level": "Simple",
     "description": "A savory rib and sauce recipe that can be searved over rice and beans"
+},
+{
+    "photo": "null",
+    "title": "One Pot Tasty Taco Mac",
+    "ingredients": [
+        {
+            "id": "656a491a6830ef20a83635ed",
+            "name": "Uncooked Pasta",
+            "quantity": "8 oz"
+        },{
+            "id": "656a491a6830ef20a83635ee",
+            "name": "Canned Black Beans",
+            "quantity": "1 (15oz) Can"
+        },{
+            "id": "656a491a6830ef20a83635ef",
+            "name": "Canned Corn",
+            "quantity": "1 (15oz) Can"
+        },{
+            "id": "656a491a6830ef20a83635f0",
+            "name": "Ground Beef",
+            "quantity": "6 oz"
+        },{
+            "id": "656a491a6830ef20a83635f1",
+            "name": "Green Onion",
+            "quantity": "3/4 Cup"
+        },{
+            "id": "656a491a6830ef20a83635f2",
+            "name": "Salsa",
+            "quantity": "1 (16oz) Jar"
+        },{
+            "id": "656a491a6830ef20a83635f3",
+            "name": "Taco Seasoning",
+            "quantity": "1 Packet"
+        },{
+            "id": "656a491a6830ef20a83635f4",
+            "name": "Veggie Broth",
+            "quantity": "2 Cups"
+        },{
+            "id": "656a491a6830ef20a83635f7",
+            "name": "Cheddar Cheese",
+            "quantity": "1 Cup"
+        },{
+            "id": "656a491a6830ef20a83635f8",
+            "name": "Avocado",
+            "quantity": "1"
+        },{
+            "id": "656a491a6830ef20a83635f9",
+            "name": "Cilantro",
+            "quantity": "1/2 Cup"
+        }
+    ],
+    "instructions": [
+        "Cook ground beef in large sauce pan.",
+        "Chop green onions",
+        "Add pasta, black beans, corn, green onion, salsa, taco seasoning, and broth to the sauce pan",
+        "Cover pan and bring to a boil over medium heat",
+        "Cook between 12-15 minutes stiring frequently until pasta is tender",
+        "Grate cheese and cut both avocado and cilantro",
+        "Remove from heat and add cheese, avocado, and cilantro"
+    ],
+    "creator": "Jadyn Iverson",
+    "keywords": [
+        "Pasta",
+        "One Pot"
+    ],
+    "culture": "Mexican",
+    "level": "Simple",
+    "description": "A quick and easy one pot taco pasta."
+},
+{
+    "photo": "null",
+    "title": "Cabbage Roll Soup",
+    "ingredients": [
+        {
+            "id": "656a491a6830ef20a83635f0",
+            "name": "Ground Beef",
+            "quantity": "1 lb"
+        },{
+            "id": "6553e86d2cc92b36dcf46bdf",
+            "name": "Onion",
+            "quantity": "1"
+        },{
+            "id": "656a5ecd930a53a9be9d50c3",
+            "name": "Green Cabbage",
+            "quantity": "4 Cups"
+        },{
+            "id": "6553e7b42cc92b36dcf35ba3",
+            "name": "Carrots",
+            "quantity": "2-6"
+        },{
+            "id": "656a491a6830ef20a83635f6",
+            "name": "Beef Broth",
+            "quantity": "8 Cups - 2 boxes"
+        },{
+            "id": "656a5ecd930a53a9be9d50c4",
+            "name": "Tomato Sauce",
+            "quantity": "2 Cans"
+        },{
+            "id": "656a5ecd930a53a9be9d50c5",
+            "name": "Long Grain Rice",
+            "quantity": "1/2 Cup"
+        },{
+            "id": "656a5ecd930a53a9be9d50c6",
+            "name": "Bay Leaf",
+            "quantity": "1"
+        },{
+            "id": "656a5ecd930a53a9be9d50c7",
+            "name": "Brown Sugar",
+            "quantity": "2 Tablespoons"
+        },{
+            "id": "656a5ecd930a53a9be9d50c8",
+            "name": "Parsley",
+            "quantity": "2 Tablespoons" 
+        }
+    ],
+    "instructions": [
+        "Brown meat in a large sauce pan.",
+        "Cut, add, and cook onion.",
+        "crush and add garlic. Cook a minute or until fragrent.",
+        "Add everything else.",
+        "Bring to a simmer and cook 25 minutes.",
+        "Take off heat, add parsley, serve."
+    ],
+    "creator": "Jadyn Iverson",
+    "keywords": [
+        "Soup"
+    ],
+    "culture": "American",
+    "level": "Simple",
+    "description": "A warm soup with lots of veggies."
 }]
