@@ -4,6 +4,9 @@ const photoController = require("../controllers/photos");
 
 router.get("/", photoController.getPhotos);
 
+router.post('/', photosController.postPhotos);
+
+router.put('/:id', photosController.putPhotos);
 
 router.get("/:_id", photoController.getPhotoById);
 
