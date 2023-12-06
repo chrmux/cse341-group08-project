@@ -1,1575 +1,1224 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Recipe Book",
-        "description": "API System for Recipe Book",
-        "version": "1.0.0",
-        "contact": {
-            "name": "CSE341-GROUP08 Project Github Repo Link",
-            "url": "https://github.com/chrmux/cse341-group08-project"
-        }
+  "swagger": "2.0",
+  "info": {
+    "title": "Recipe Book",
+    "description": "API System for Recipe Book",
+    "version": "1.0.0",
+    "contact": {
+      "name": "CSE341-GROUP08 Project Github Repo Link",
+      "url": "https://github.com/chrmux/cse341-group08-project"
+    }
+  },
+  "server": [{
+    "url": "https://cse341-group08-project.onrender.com/api-docs",
+    "description": "Live server"
+  }],
+  "tags": [{
+      "name": "Auth",
+      "description": "Authentication Endpoints (Public)"
     },
-    "servers": [{
-            "url": "http://localhost:8080/api-docs",
-            "description": "Local development server"
-        },
-        {
-            "url": "https://cse341-group08-project.onrender.com/api-docs",
-            "description": "Live server"
-        }
-    ],
-    "tags": [{
-            "name": "Auth",
-            "description": "Authentication Endpoints (Public)"
-        },
-        {
-            "name": "Recipe",
-            "description": "Recipe Endpoints (Public + Private)"
-        },
-        {
-            "name": "Keyword",
-            "description": "Keyword Endpoints (Public + Private)"
-        },
-        {
-            "name": "Ingredient",
-            "description": "Ingredient Endpoints (Public + Private)"
-        },
-        {
-            "name": "Photo",
-            "description": "Photo Endpoints (Public + Private)"
-        },
-        {
-            "name": "User",
-            "description": "User Endpoints (Admin + Public)"
-        }
-    ],
-    "components": {
-        "securitySchemes": {
-            "bearerAuth": {
-              "type": "http",
-              "scheme": "bearer",
-              "bearerFormat": "JWT"
-            }
-          },
-        "responses": {
-            "400": {
-                "description": "Bad Request",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "number",
-                                    "example": 400
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "Bad Request"
-                                },
-                                "errors": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "field": {
-                                                "type": "string",
-                                                "example": "email"
-                                            },
-                                            "message": {
-                                                "type": "string",
-                                                "example": "Email Field is Required"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "401": {
-                "description": "Unauthorized",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "integer",
-                                    "example": 401
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "Access denied. You do not have permission to perform this operation."
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "404": {
-                "description": "Not Found",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "integer",
-                                    "format": "int32",
-                                    "example": 404
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "Your Requested Item Not Found"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "500": {
-                "description": "Internal Server Error",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "code": {
-                                    "type": "number",
-                                    "example": 500
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "example": "An unexpected error occurred while processing your request. Please try again later."
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "parameters": {
-            "IdParams": {
-                "required": true,
-                "in": "path",
-                "name": "id",
-                "description": "Item By Id",
-                "schema": {
-                    "$ref": "#/components/schemas/Id"
-                }
-            }
-        },
-        "schemas": {
-            "Ingredients": {
-                "type": "object",
-                "properties": {
-                    "ingredientId": {
-                        "$ref": "#/components/schemas/Id"
-                    },
-                    "description": {
-                        "type": "string",
-                        "example": "any"
-                    },
-                    "category": {
-                        "type": "object",
-                        "example": "any"
-                    }
-                }
-            },
-            "Recipes": {
-                "type": "object",
-                "properties": {
-                    "userId": {
-                        "$ref": "#/components/schemas/Recipe"
-                    },
-                    "recipe info": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "photo": {
-                                    "type": "string"
-                                },
-                                "title": {
-                                    "type": "string"
-                                },
-                                "ingredients": {
-                                    "type": "string"
-                                },
-                                "instruction": {
-                                    "type": "string"
-                                },
-                                "creator": {
-                                    "type": "array"
-                                    
-                                },
-                                "keywords": {
-                                    "type": "string"
-                                },
-                                "Culture": {
-                                    "type": "string"
-                                },
-                                "level": {
-                                    "type": "string"
-                                },
-                                "description": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "Photo": {
-                "type": "object",
-                "properties": {
-                    "objectId": {
-                        "$ref": "#/components/schemas/Photo"
-                    },
-                    "title": {
-                        "type": "object",
-                        "example": "any"
-                    },
-                    "photoUrl": {
-                        "type": "string",
-                        "example": "any"
-                    }
-                }
-            },
-            "Id": {
-                "type": "string",
-                "example": "550e8400-e29b-41d4-a716-446655440000"
-            },
-            "Name": {
-                "type": "string",
-                "example": "Pork Adobo"
-            },
-            "keyword": {
+    {
+      "name": "Recipes",
+      "description": "Recipe Endpoints (Public + Private)"
+    },
+    {
+      "name": "Keywords",
+      "description": "Keyword Endpoints (Public + Private)"
+    },
+    {
+      "name": "Ingredients",
+      "description": "Ingredient Endpoints (Public + Private)"
+    },
+    {
+      "name": "Photo",
+      "description": "Photo Endpoints (Public + Private)"
+    },
+    {
+      "name": "Users",
+      "description": "User Endpoints (Admin + Public)"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Create user",
+        "description": "This is for when a user creates an account.",
+        "operationId": "createUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "Created user object",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "username": {
                 "type": "string",
                 "example": "any"
-            },
-            "User": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "example": "user123"
-                    },
-                    "roles": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "admin",
-                                "user"
-                            ],
-                            "default": "user"
-                        }
-                    },
-                    "password": {
-                        "type": "String",
-                        "example": "any"
-                    }
-                }
-            },
-            "UserUpdateInput": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "example": "new_user123"
-                    },
-                    "roles": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "admin",
-                                "user"
-                            ],
-                            "default": "user"
-                        }
-                    }
-                }
-            },
-            "UserPartialUpdateInput": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "roles": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "admin",
-                                "user"
-                            ],
-                            "default": "user"
-                        }
-                    },
-                    "currentPassword": {
-                        "type": "string",
-                        "format": "password"
-                    },
-                    "newPassword": {
-                        "type": "string",
-                        "format": "password"
-                    }
-                }
-            }
-        }
-    },
-    "schemes": ["http", "https"],
-    "consumes": ["application/json"],
-    "produces": ["application/json"],
-    "paths": {
-        "/signup": {
-                "post": {
-                    "tags":["Auth"],
-                  "summary": "Create New User",
-                  "description": "Register a new user account",
-                  "operationId": "signup",
-                  "requestBody": {
-                    "required": true,
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "object",
-                          "properties": {
-                            "username": {
-                              "type": "string",
-                              "example": "john_doe"
-                            },
-                            "email": {
-                              "type": "string",
-                              "format": "email",
-                              "example": "john.doe@example.com"
-                            },
-                            "password": {
-                              "type": "string",
-                              "format": "password",
-                              "example": "password123"
-                            }
-                          }
-                        }
-                      }
-                    },
-                  "responses": {
-                    "201": {
-                      "description": "User registered successfully",
-                      "content": {
-                        "application/json": {
-                          "example": {
-                            "message": "User registered successfully"
-                          }
-                        }
-                      }
-                    },
-                    "400": {
-                      "description": "Bad Request",
-                      "content": {
-                        "application/json": {
-                          "example": {
-                            "error": "Invalid input parameters"
-                          }
-                        }
-                      }
-                    },
-                    "409": {
-                      "description": "Conflict",
-                      "content": {
-                        "application/json": {
-                          "example": {
-                            "error": "User with this email already exists"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-
-        "/login": {
-            "post": {
-                "tags":["Auth"],
-                "summary": "User Login",
-                "description": "Authenticate and obtain an access token",
-                "operationId": "login",
-                "requestBody": {
-                  "required": true,
-                  "content": {
-                    "application/json": {
-                      "schema": {
-                        "type": "object",
-                        "properties": {
-                          "username": {
-                            "type": "string",
-                            "example": "john_doe"
-                          },
-                          "password": {
-                            "type": "string",
-                            "format": "password",
-                            "example": "password123"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "responses": {
-                  "200": {
-                    "description": "Successful login",
-                    "content": {
-                      "application/json": {
-                        "example": {
-                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-                        }
-                      }
-                    }
-                  },
-                  "401": {
-                    "description": "Unauthorized",
-                    "content": {
-                      "application/json": {
-                        "example": {
-                          "error": "Invalid credentials"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-        "/recipes": {
-            "post": {
-                "tags": ["Recipe"],
-                "summary": "Create a Recipe",
-                "description": "Create new Recipe in database",
-                "operationId": "createRecipe",
-                "parameters": [{
-                        "name": "recipe",
-                        "description": "Recipe params to create new recipe",
-                        "in": "body",
-                        "required": "true",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "photo": {
-                                    "type": "string"
-                                },
-                                "title": {
-                                    "type": "string"
-                                },
-                                "ingredients": {
-                                    "type": "string",
-                                    "example": "any"
-                                },
-                                "instruction": {
-                                    "type": "string",
-                                    "example": "Boil water"
-                                },
-                                "creator": {
-                                    "type": "string",
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Id"
-                                    }
-                                },
-                                "keywords": {
-                                    "type": "string",
-                                    "example": "Boil water"
-                                },
-                                "culture": {
-                                    "type": "string",
-                                    "example": "culture"
-                                },
-                                "level": {
-                                    "type": "string",
-                                    "example": "level"
-                                },
-                                "description": {
-                                    "type": "string",
-                                    "example": "description"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "name": "authorization",
-                        "description": "Access token to authorize the user",
-                        "in": "header",
-                        "type": "string",
-                        "required": true
-                    }
-                ],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "New Recipe Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            },
-            "get": {
-                "tags": ["Recipe"],
-                "summary": "Fetch All Recipes",
-                "description": "Find all Recipes from the database",
-                "operationId": "getallRecipe",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "All the Recipe",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            }
-        },
-        "/recipes/{id}":{
-            "get": {
-                "tags": ["Recipe"],
-                "summary": "Fetch item by Id",
-                "description": "Find one from the database",
-                "operationId": "getRecipeById",
-                "produces": ["application/json"],
-                "parameters": [{
-                    "name": "id",
-                    "in": "path",
-                    "required": "true",
-                    "description": "Id of the recipe",
-                    "type": "String"
-
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }
-            ],
-                "responses": {
-                    "200": {
-                        "description": "Recipe has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            },
-            "put": {
-                "tags": ["Recipe"],
-                "summary": "Update Recipe Data",
-                "description": "Update the existing Recipe in database",
-                "operationId": "updateRecipe",
-                "parameters": [{
-                    "name": "recipe",
-                    "description": "Recipe params to update the recipe",
-                    "in": "body",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "$ref": "#/components/schemas/Id"
-                            },
-                            "photo": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "title": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "ingredients": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "instruction": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "creator": {
-                                "type": "string",
-                                "schema": {
-                                    "$ref": "#/components/schemas/Id"
-                                }
-                            },
-                            "keywords": {
-                                "type": "string",
-                                "example": "Boil water"
-                            },
-                            "culture": {
-                                "type": "string",
-                                "example": "culture"
-                            },
-                            "level": {
-                                "type": "string",
-                                "example": "level"
-                            },
-                            "description": {
-                                "type": "string",
-                                "example": "description"
-                            }
-                        }
-                    }
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Recipe has been Updated",
-                        "schema": {
-                            "$ref": "#"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            },
-    "delete": {
-            "tags": ["Recipe"],
-            "summary": "Delete Item",
-            "description": "Delete Recipe from the database",
-            "operationId": "deleteRecipe",
-            "produces": ["application/json"],
-            "parameters": [{
-                "name": "id",
-                "in": "path",
-                "required": "true",
-                "description": "Id of the recipe",
-                "type": "String"
-
-            },
-            {
-                "name": "authorization",
-                "description": "Access token to authorize the user",
-                "in": "header",
+              },
+              "email": {
                 "type": "string",
-                "required": true
+                "example": "any"
+              },
+              "password": {
+                "type": "string",
+                "example": "any"
+              }
             }
-        ],
-            "responses": {
-                "200": {
-                    "description": "Recipe has deleted",
-                    "schema": {
-                        "$ref": "#/components/schemas/Id"
-                    }
-                }
-            },
-            "401": {
-                "$ref": "#/components/responses/401"
-            },
-            "404": {
-                "$ref": "#/components/responses/404"
-            },
-            "500": {
-                "$ref": "#/components/responses/500"
-            }
+          }
+        }],
+        "responses": {
+          "201": {
+            "description": "successfully created user"
+          }
         }
+      }
     },
-        "/recipes/{name}": {
-            "parameters": [{
-                    "name": "name",
-                    "in": "path",
-                    "required": "true",
-                    "description": "name of the recipe",
-                    "type": "String"
-
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }
-            ],
-            "get": {
-                "tags": ["Recipe"],
-                "summary": "Fetch item by name",
-                "description": "Find one from the database",
-                "operationId": "getRecipeByName",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Recipe has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Name"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            }
-        },
-        "/recipes/{keyword}": {
-            "parameters": [{
-                    "name": "keyword",
-                    "in": "path",
-                    "required": "true",
-                    "description": "keyword of the recipe",
-                    "type": "String"
-
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }
-            ],
-            "get": {
-                "tags": ["Recipe"],
-                "summary": "Fetch item(s) by keyword(s)",
-                "description": "Find one from the database",
-                "operationId": "getRecipeByKeyword",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Recipe has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Keyword"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            }
-        },
-        "/keywords": {
-            "post": {
-                "tags": ["Keyword"],
-                "summary": "Create a Keyword",
-                "description": "Create new keyword in database",
-                "operationId": "createKeyword",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true                        
-                    },
-                    {
-                        "name": "keyword",
-                        "description": "Keyword params to create new keyword",
-                        "in": "body",
-                        "required": "true",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "classification": {
-                                    "type": "string",
-                                    "example": "any"
-                                },
-                                "name": {
-                                    "type": "string",
-                                    "example": "any"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "New Keyword Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            },
-            "get": {
-                "tags": ["Keyword"],
-                "summary": "Fetch all keywords",
-                "description": "Find all keyword from the database",
-                "operationId": "getallKeyword",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "All the keyword",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            }
-        },
-        "/keywords/{id}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
-                {                   
-                    "name": "id",
-                    "in": "path",
-                    "required": "true",
-                    "description": "id of the keyword",
-                    "type": "String"
-                }
-            ],
-            "get": {
-                "tags": ["Keyword"],
-                "summary": "Fetch keyword by ID",
-                "description": "Find one from the database",
-                "operationId": "getKeywordById",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Keyword has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": ["Keyword"],
-                "summary": " Update Keyword By ID",
-                "description": "Update the existing keyword in database",
-                "operationId": "updateKeywords",
-                "parameters": [{
-                    "name": "keyword",
-                    "description": "Keyword params to update the keyword",
-                    "in": "body",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "$ref": "#/components/schemas/Id"
-                            },
-                            "classification": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "name": {
-                                "type": "string",
-                                "example": "any"
-                            }
-                        }
-                    }
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Keyword has been Updated",
-                        "schema": {
-                            "$ref": "#/components/schemas/Keyword"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": ["Keyword"],
-                "summary": " Delete keyword By ID",
-                "description": "Delete keyword from the database",
-                "operationId": "deleteKeywords",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Keyword has deleted",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            }            
-        },
-        "/keywords/{classification}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
-                {                   
-                    "name": "classification",
-                    "in": "path",
-                    "required": "true",
-                    "description": "classification of the keyword",
-                    "type": "String"
-                }
-            ],
-            "get": {
-                "tags": ["Keyword"],
-                "summary": "Fetch keywords by classification",
-                "description": "Find one from the database",
-                "operationId": "getKeywordByClassification",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Keyword has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            }
-        },
-        "/ingredients": {
-            "post": {
-                "tags": ["Ingredient"],
-                "summary": "Create Ingredients",
-                "description": "Create new Ingredient in database",
-                "parameters": [{
-
-                        "name": "authorization",
-                        "description": "Access token to authorize the user",
-                        "in": "header",
-                        "type": "string",
-                        "required": true
-                        
-                    },
-                    {
-                        "name": "ingredients",
-                        "description": "Ingredient params to create new ingredient",
-                        "in": "body",
-                        "required": "true",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string",
-                                    "example": "any"
-                                },
-                                "description": {
-                                    "type": "string",
-                                    "example": "any"
-                                },
-                                "category": {
-                                    "type": "string",
-                                    "example": "any"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "New Ingredient Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            },
-            "get": {
-                "tags": ["Ingredient"],
-                "summary": "Fetch All Ingredients",
-                "description": "Find all ingredients from the database",
-                "operationId": "getAllIngredients",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "All the Ingredients",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            }
-        },
-        "/ingredients/{id}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
-                {
-                    "name": "id",
-                    "in": "path",
-                    "required": "true",
-                    "description": "id of the Ingredient",
-                    "type": "String"
-                }
-            ],
-            "get": {
-                "tags": ["Ingredient"],
-                "summary": "Fetch Ingredient",
-                "description": "Find one from the database",
-                "operationId": "getIngredientsById",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Ingredient has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            },
-            "put": {
-                "tags": ["Ingredient"],
-                "summary": "Update Ingredients",
-                "description": "Update the existing ingredient in database",
-                "operationId": "updateIngredient",
-                "parameters": [{
-                    "name": "ingredient",
-                    "description": "Ingredient params to update the ingredient",
-                    "in": "body",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "$ref": "#/components/schemas/Id"
-                            },
-                            "name": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "data": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "category": {
-                                "type": "string",
-                                "example": "any"
-                            }
-                            
-                        }
-                    }
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Ingredient has been Updated",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            },
-            "delete": {
-                "tags": ["Ingredient"],
-                "summary": "Delete Ingredient",
-                "description": "Delete ingredient from the database",
-                "operationId": "deleteIngredient",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Ingredient has deleted",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/404"
-                }
-            }
-            
-        },
-        "/ingredients/{name}": {
-            "parameters": [{
-                    "name": "name",
-                    "in": "path",
-                    "required": "true",
-                    "description": "name of the ingredient",
-                    "type": "String"
-
-                },
-                {
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }
-            ],
-            "get": {
-                "tags": ["Ingredient"],
-                "summary": "Fetch ingredients by name",
-                "description": "Find one from the database",
-                "operationId": "getRecipeByIngredient",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "ingredients has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ingredients"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            }
-        },
-        "/photos": {
-            "post": {
-                "tags": ["Photo"],
-                "summary": "Create photo",
-                "description": "Create new Photo in database",
-                "operationId": "createPhoto",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true                        
-                    },
-                    {
-                        "name": "photos",
-                        "description": "Photo params to create new photo",
-                        "in": "body",
-                        "required": "true",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "title": {
-                                    "type": "string",
-                                    "example": "any"
-                                },
-                                "photoUrl": {
-                                    "type": "string",
-                                    "example": "any"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "New Photo Created",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            },
-            "get": {
-                "tags": ["Photo"],
-                "summary": "Fetch All Photos",
-                "description": "Find all Photo from the database",
-                "operationId": "getallPhoto",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "All the Photo",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            }
-        },
-        "/photos/{id}": {
-            "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
-                {                   
-                    "name": "id",
-                    "in": "path",
-                    "required": "true",
-                    "description": "id of the Photo",
-                    "type": "String"
-                }
-            ],
-            "get": {
-                "tags": ["Photo"],
-                "summary": "Fetch Photo By ID",
-                "description": "Find one from the database",
-                "operationId": "getPhotoById",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Photo has been found",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": ["Photo"],
-                "summary": "Update Photo By ID",
-                "description": "Update the existing Photo in database",
-                "operationId": "updatePhoto",
-                "parameters": [{
-                    "name": "photo",
-                    "description": "Photo params to update the photo",
-                    "in": "body",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "$ref": "#/components/schemas/Id"
-                            },
-                            "title": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "photoUrl": {
-                                "type": "string",
-                                "example": "any"
-                            }
-                        }
-                    }
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Photo has been Updated",
-                        "schema": {
-                            "$ref": "#/components/schemas/Photo"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": ["Photo"],
-                "summary": "Delete Photo By ID",
-                "description": "Delete photo from the database",
-                "operationId": "deletePhoto",
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Photo has deleted",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                }
-            }
-        },
-        "/users": {
-            "get": {
-                "tags": ["User"],
-                "summary": "Get All Profile Data",
-                "description": "Find all users from the database",
-                "operationId": "getAllUser",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "All the Users",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/400"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            }
-        },
-        "/users/id": {
-            "get": {
-                "tags": ["User"],
-                "summary": "Get User Profile Data by Id",
-                "description": "Find single users from the database",
-                "operationId": "getSingleUser",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
-                {             
-                    "name": "id",
-                    "in": "path",
-                    "required": "true",
-                    "description": "id of the User",
-                    "type": "String"   
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Single User",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#definitions/responses/401"
-                },
-                "404": {
-                    "$ref": "#definitions/responses/404"
-                },
-                "500": {
-                    "$ref": "#definitions/responses/500"
-                }
-
-        },
-            "put": {
-                "tags": ["User"],
-                "summary": "Update User Profile Data",
-                "description": "Update single user from the database",
-                "operationId": "getSingleUser",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "body",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "$ref": "#/components/schemas/Id"
-                            },
-                            "username": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "email": {
-                                "type": "string",
-                                "example": "any"
-                            }
-                        }
-                    }
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Single User",
-                        "schema": {
-                            "$ref": "#/components/schemas/UserUpdateInput"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#definitions/responses/401"
-                },
-                "404": {
-                    "$ref": "#definitions/responses/404"
-                },
-                "500": {
-                    "$ref": "#definitions/responses/500"
-                }
-            },
-            "delete": {
-                "summary": "Delete User Profile Data",
-                "tags": [
-                    "User"
-                ],
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "type": "string",
-                    "required": true
-                },
-                {             
-                    "name": "id",
-                    "in": "path",
-                    "required": "true",
-                    "description": "id of the User",
-                    "type": "String"   
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Delete User",
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#definitions/responses/401"
-                },
-                "404": {
-                    "$ref": "#definitions/responses/404"
-                },
-                "500": {
-                    "$ref": "#definitions/responses/500"
-                }
-            },
-            "patch": {
-                "tags": ["User"],
-                "summary": "Update User Profile(including Password)",
-                "description": "Update single user from the database",
-                "operationId": "updateUserData",
-                "parameters": [{
-                    "name": "authorization",
-                    "description": "Access token to authorize the user",
-                    "in": "header",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "$ref": "#/components/schemas/Id"
-                            },
-                            "username": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "email": {
-                                "type": "string",
-                                "example": "any"
-                            },
-                            "password": {
-                                "type": "string",
-                                "example": "any"
-                            }
-                        }
-                    }
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "User Data",
-                        "schema": {
-                            "$ref": "#/components/schemas/UserPartialUpdateInput"
-                        }
-                    }
-                },
-                "401": {
-                    "$ref": "#/components/responses/401"
-                },
-                "404": {
-                    "$ref": "#/components/responses/404"
-                },
-                "500": {
-                    "$ref": "#/components/responses/500"
-                }
-            }
+    "/user/login": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Logs user into the system",
+        "operationId": "loginUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
         }
+      }
+    },
+    "/recipes": {
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Create a Recipe",
+        "description": "Create new Recipe in database",
+        "operationId": "createRecipe",
+        "parameters": [{
+          "name": "recipes",
+          "description": "Recipe params to create new recipe",
+          "in": "body",
+          "required": "true",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "photo": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "ingredients": {
+                "type":"string"
+              },
+              "instruction": {
+                "type": "string"
+              },
+              "creator": {
+                "type": "string",
+                "id": {
+                  "type": "string"
+                }
+              },
+              "keywords": {
+                "type": "string"
+              },
+              "culture": {
+                "type": "array"
+              },
+              "level": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New Recipe Created"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Fetch All Recipes",
+        "description": "Find all Recipes from the database",
+        "operationId": "getallRecipe",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/recipes/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Fetch item by Id",
+        "description": "Find one from the database",
+        "operationId": "getRecipeById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": "true",
+          "description": "Id of the recipe"
+        }],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Update Recipe Data",
+        "description": "Update the existing Recipe in database",
+        "operationId": "updateRecipe",
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "required": "true",
+            "description": "id of the recipe",
+            "type": "string"
+          },
+          {
+            "name": "recipes",
+            "description": "Recipe params to update the recipe",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "photo": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "ingredients": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "instruction": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "creator": {
+                  "type": "string",
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "keywords": {
+                  "type": "string"
+                },
+                "culture": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Delete Item",
+        "description": "Delete Recipe from the database",
+        "operationId": "deleteRecipe",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": "true",
+          "description": "Id of the recipe",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/recipes/{name}": {
+      "parameters": [{
+        "name": "name",
+        "in": "path",
+        "required": "true",
+        "description": "name of the recipe",
+        "type": "string"
+      }],
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Fetch item by name",
+        "description": "Find one from the database",
+        "operationId": "getRecipeByName",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/recipes/{keyword}": {
+      "parameters": [{
+        "name": "keyword",
+        "in": "path",
+        "required": "true",
+        "description": "keyword of the recipe",
+        "type": "string"
+      }],
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Fetch item(s) by keyword(s)",
+        "description": "Find one from the database",
+        "operationId": "getRecipeByKeyword",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/keywords": {
+      "post": {
+        "tags": [
+          "Keywords"
+        ],
+        "summary": "Create a Keyword",
+        "description": "Create new keyword in database",
+        "operationId": "createKeyword",
+        "parameters": [{
+          "name": "keywords",
+          "description": "Keyword params to create new keyword",
+          "in": "body",
+          "required": "true",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "example": "any"
+              },
+              "name": {
+                "type": "string",
+                "example": "any"
+              }
+            }
+          }
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Keywords"
+        ],
+        "summary": "Fetch all keywords",
+        "description": "Find all keyword from the database",
+        "operationId": "getallKeyword",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/keywords/{id}": {
+      "get": {
+        "tags": [
+          "Keywords"
+        ],
+        "summary": "Fetch keyword by ID",
+        "description": "Find one from the database",
+        "operationId": "getKeywordById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": "true",
+          "description": "id of the keyword",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Keywords"
+        ],
+        "summary": " Update Keyword By ID",
+        "description": "Update the existing keyword in database",
+        "operationId": "updateKeywords",
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "required": "true",
+            "description": "id of the keyword",
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "description": "Keyword params to update the keyword",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "classification": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Keyword has been Updated"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Keywords"
+        ],
+        "summary": " Delete keyword By ID",
+        "description": "Delete keyword from the database",
+        "operationId": "deleteKeywords",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": "true",
+          "description": "id of the keyword",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/keywords/{classification}": {
+      "parameters": [{
+        "name": "classification",
+        "in": "path",
+        "required": "true",
+        "description": "classification of the keyword",
+        "type": "string"
+      }],
+      "get": {
+        "tags": [
+          "Keywords"
+        ],
+        "summary": "Fetch keywords by classification",
+        "description": "Find one from the database",
+        "operationId": "getKeywordByClassification",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/ingredients": {
+      "post": {
+        "tags": [
+          "Ingredients"
+        ],
+        "summary": "Create Ingredients",
+        "description": "Create new Ingredient in database",
+        "parameters": [{
+          "name": "ingredients",
+          "description": "Ingredient params to create new ingredient",
+          "in": "body",
+          "required": "true",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "any"
+              },
+              "description": {
+                "type": "string",
+                "example": "any"
+              },
+              "category": {
+                "type": "string",
+                "example": "any"
+              }
+            }
+          }
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Ingredients"
+        ],
+        "summary": "Fetch All Ingredients",
+        "description": "Find all ingredients from the database",
+        "operationId": "getIngredients",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/ingredients/{id}": {
+      "get": {
+        "tags": [
+          "Ingredients"
+        ],
+        "summary": "Fetch Ingredient",
+        "description": "Find one from the database",
+        "operationId": "getIngredientsById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": "true",
+          "description": "id of the Ingredient",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Ingredients"
+        ],
+        "summary": "Update Ingredients",
+        "description": "Update the existing ingredient in database",
+        "operationId": "updateIngredient",
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "required": "true",
+            "description": "id of the Ingredient",
+            "type": "string"
+          },
+          {
+            "name": "ingredient",
+            "description": "Ingredient params to update the ingredient",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "data": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Ingredients"
+        ],
+        "summary": "Delete Ingredient",
+        "description": "Delete ingredient from the database",
+        "operationId": "deleteIngredient",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "id of the Ingredient",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/ingredients/{name}": {
+      "parameters": [{
+        "name": "name",
+        "in": "path",
+        "required": "true",
+        "description": "name of the ingredient",
+        "type": "string"
+      }],
+      "get": {
+        "tags": [
+          "Ingredients"
+        ],
+        "summary": "Fetch ingredients by name",
+        "description": "Find one from the database",
+        "operationId": "getRecipeByIngredient",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/photos": {
+      "post": {
+        "tags": [
+          "Photo"
+        ],
+        "summary": "Create photo",
+        "description": "Create new Photo in database",
+        "operationId": "createPhoto",
+        "parameters": [{
+          "name": "photo",
+          "description": "Photo params to create new photo",
+          "in": "body",
+          "required": "true",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "example": "any"
+              },
+              "photoUrl": {
+                "type": "string",
+                "example": "any"
+              }
+            }
+          }
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Photo"
+        ],
+        "summary": "Fetch All Photos",
+        "description": "Find all Photo from the database",
+        "operationId": "getallPhoto",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/photos/{id}": {
+      "get": {
+        "tags": [
+          "Photo"
+        ],
+        "summary": "Fetch Photo By ID",
+        "description": "Find one from the database",
+        "operationId": "getPhotoById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": "true",
+          "description": "id of the Photo",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Photo"
+        ],
+        "summary": "Update Photo By ID",
+        "description": "Update the existing Photo in database",
+        "operationId": "updatePhoto",
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "required": "true",
+            "description": "id of the Photo",
+            "type": "string"
+          },
+          {
+            "name": "photo",
+            "description": "Photo params to update the photo",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "photoUrl": {
+                  "type": "string",
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Photo"
+        ],
+        "summary": "Delete Photo By ID",
+        "description": "Delete photo from the database",
+        "operationId": "deletePhoto",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": "true",
+          "description": "id of the Photo",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get All Profile Data",
+        "description": "Find all users from the database",
+        "operationId": "getAllUser",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/users/id": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get User Profile Data by Id",
+        "description": "Find single users from the database",
+        "operationId": "getSingleUser",
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": "true",
+          "description": "id of the User",
+          "type": "string"
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User Profile Data",
+        "description": "Update single user from the database",
+        "operationId": "getSingleUser",
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "required": "true",
+            "description": "id of the user",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string",
+                  "example": "new_user123"
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "admin",
+                      "user"
+                    ],
+                    "default": "user"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete User Profile Data",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": "true",
+          "description": "id of the User",
+          "type": "string"
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User Profile(including Password)",
+        "description": "Update single user from the database",
+        "operationId": "updateUserData",
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "required": "true",
+            "description": "id of the user",
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "description": "User params to update the user data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "admin",
+                      "user"
+                    ],
+                    "default": "user"
+                  }
+                },
+                "currentPassword": {
+                  "type": "string",
+                  "format": "password"
+                },
+                "newPassword": {
+                  "type": "string",
+                  "format": "password"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
     }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "ingredients": {
+      "type": "object",
+      "properties": {
+        "ingredientId": {
+          "type": "string",
+          "example": "any"
+        },
+        "description": {
+          "type": "string",
+          "example": "any"
+        },
+        "category": {
+          "type": "object",
+          "example": "any"
+        }
+      }
+    },
+    "recipes": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "example": "any"
+        },
+        "recipe info": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "photo": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "ingredients": {
+                "type": "string"
+              },
+              "instruction": {
+                "type": "string"
+              },
+              "creator": {
+                "type": "array"
+              },
+              "keywords": {
+                "type": "string"
+              },
+              "Culture": {
+                "type": "string"
+              },
+              "level": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "photo": {
+      "type": "object",
+      "properties": {
+        "objectId": {
+          "type": "string",
+          "example": "any"
+        },
+        "title": {
+          "type": "object",
+          "example": "any"
+        },
+        "photoUrl": {
+          "type": "string",
+          "example": "any"
+        }
+      }
+    },
+    "credentials": {
+      "type": "object",
+      "required": [
+        "password",
+        "username"
+      ],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Id": {
+      "type": "string",
+      "example": "550e8400-e29b-41d4-a716-446655440000"
+    },
+    "name": {
+      "type": "string",
+      "example": "Pork Loin Ribs"
+    },
+    "keyword": {
+      "type": "string",
+      "example": "Paleo"
+    },
+    "userInput": {
+      "type": "object",
+      "parameters": {
+        "name": {
+          "type": "string",
+          "example": "user123"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ],
+            "default": "user"
+          }
+        },
+        "password": {
+          "type": "string",
+          "example": "123456789"
+        }
+      }
+    },
+    "UserUpdateInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "new_user123"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ],
+            "default": "user"
+          }
+        }
+      }
+    },
+    "UserPartialUpdateInput": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ],
+            "default": "user"
+          }
+        },
+        "currentPassword": {
+          "type": "string",
+          "format": "password"
+        },
+        "newPassword": {
+          "type": "string",
+          "format": "password"
+        }
+      }
+    }
+  }
 }
