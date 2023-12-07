@@ -124,10 +124,54 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const putUsers = async (req, res, next) => {
+  const newData = req.body;
+  const id = req.params.id;
+    try {
+        const result = await mongodb.getDb().db('Group08-Project03').collection('Users').findOneAndUpdate(
+            {_id: new ObjectId(id)},
+            newData,
+            {returnDocument: 'after'}
+        );
+        if(result == null){
+            res.status(404).json({ error: `Users Put Request: No item found with id of ${id}` })
+            return
+        }
+        res.setHeader('Content-Type', 'application/json').status(200).json(result);
+    } catch (e) {
+        console.log(e);
+        res.status(400).json("Users Put Request: Invalid request data found in request body.");
+    }
+};
+
+const patchUsers = async (req, res, next) => {
+  const newData = req.body;
+  const id = req.params.id;
+    try {
+        const result = await mongodb.getDb().db('Group08-Project03').collection('Users').findOneAndUpdate(
+            {_id: new ObjectId(id)},
+            { $set: newData },
+            {returnDocument: 'after'}
+        );
+        if(result == null){
+            res.status(404).json({ error: `Users Patch Request: No item found with id of ${id}` })
+            return
+        }
+        res.setHeader('Content-Type', 'application/json').status(200).json(result);
+    } catch (e) {
+        console.log(e);
+        res.status(400).json("Users Patch Request: Invalid request data found in request body.");
+    }
+};
+
+
+
 module.exports = {
   getUsers,
   getUserByID,
   getUserByEmail,
   getUserByPassword,
   deleteUser,
+  putUsers,
+  patchUsers
 };
