@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-
+router.use('/', require('./auth'));
 router.use('/', require('./swagger'));
 //router.use('/users', require('./users'));
 router.use('/keywords', require('./keywords'));
