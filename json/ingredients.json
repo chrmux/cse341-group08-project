@@ -84,4 +84,95 @@
     "name": "Lime Juice",
     "description": "The juice of a lime",
     "category": "Juice"
+},
+{
+    "name": "Uncooked Pasta",
+    "description": "Pasta from a box",
+    "category": "Pasta"
+},{
+    "name": "Canned Black Beans",
+    "description": "Black beans from a can",
+    "category": "Legums"
+},{
+    "name": "Canned Corn",
+    "description": "Corn from a can",
+    "category": "Veggitable"
+},{
+    "name": "Ground Beef",
+    "description": "Ground Beef cooked into crumbles",
+    "category": "Meat"
+},{
+    "name": "Green Onion",
+    "description": "Baby Onions",
+    "category": "Veggitable"
+},{
+    "name": "Salsa",
+    "description": "A jar of salsa",
+    "category": "Sauce"
+},{
+    "name": "Taco Seasoning",
+    "description": "A prmixed mexican seasoning for tacos",
+    "category": "Seasoning"
+},{
+    "name": "Veggie Broth",
+    "description": "Veggie broth made form stock",
+    "category": "Broth"
+},{
+    "name": "Chicken Broth",
+    "description": "Chicken broth made from stock",
+    "category": "Broth"
+},{
+    "name": "Beef Broth",
+    "description": "Beef broth made from stock",
+    "category": "Broth"
+},{
+    "name": "Cheddar Cheese",
+    "description": "A type of hard yellow cheese",
+    "category": "Cheese"
+},{
+    "name": "Avocado",
+    "description": "A green mushy veggitable",
+    "category": "Veggitable"
+},{
+    "name": "Cilantro",
+    "description": "A type of herb",
+    "category": "Herb"
+},
+{
+    "name": "Garlic",
+    "description": "Fresh peeled and crushed garlic",
+    "category": [
+        "Herb",
+        "Seasoning"
+    ]
+},{
+    "name": "Green Cabbage",
+    "description": "Green cabbage not red",
+    "category": "Veggitable"
+},{
+    "name": "Tomato Sauce",
+    "description": "Canned tommato sauce",
+    "category": "Veggitable"
+},{
+    "name": "Long Grain Rice",
+    "description": "White or brown rice that is longer",
+    "category": "Grain"
+},{
+    "name": "Bay Leaf",
+    "description": "A dried bay leaf adds a lot of flavor",
+    "category": [
+        "Herb",
+        "Seasoning"
+    ]
+},{
+    "name": "Brown Sugar",
+    "description": "Brown sugar not white",
+    "category": "Sugar"
+},{
+    "name": "Parsley",
+    "description": "An herb",
+    "category": [
+        "Herb",
+        "Seasoning"
+    ]
 }]
