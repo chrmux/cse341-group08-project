@@ -312,10 +312,10 @@
         }
       }
     },
-    "/recipes/{title}": {
+    "/recipes?title=name": {
       "parameters": [{
         "name": "title",
-        "in": "path",
+        "in": "query",
         "required": "true",
         "description": "name of the recipe",
         "type": "string"
@@ -337,10 +337,10 @@
         }
       }
     },
-    "/recipes/{keyword}": {
+    "/recipes?keyword=name": {
       "parameters": [{
         "name": "keyword",
-        "in": "path",
+        "in": "query",
         "required": "true",
         "description": "keyword of the recipe",
         "type": "string"
@@ -509,10 +509,10 @@
         }
       }
     },
-    "/keywords/{classification}": {
+    "/keywords?classification=name": {
       "parameters": [{
         "name": "classification",
-        "in": "path",
+        "in": "query",
         "required": "true",
         "description": "classification of the keyword",
         "type": "string"
@@ -688,10 +688,10 @@
         }
       }
     },
-    "/ingredients/{name}": {
+    "/ingredients?name=name": {
       "parameters": [{
         "name": "name",
-        "in": "path",
+        "in": "query",
         "required": "true",
         "description": "name of the ingredient",
         "type": "string"

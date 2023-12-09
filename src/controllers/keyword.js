@@ -5,8 +5,8 @@ const getKeywords = async(req, res, next) => {
     console.log("In get keywords");
     try {
         const query = {};
-        if (req.body.classification) {
-            query.classification = req.body.classification;
+        if (req.query.classification) {
+            query.classification = req.query.classification;
         }
         console.log(query);
 

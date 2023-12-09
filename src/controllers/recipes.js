@@ -7,11 +7,11 @@ const getRecipes = async (req, res, next) => {
   console.log("In get Recipes");
   try {
     const query = {};
-    if (req.body.title) {
-        query.title = req.body.title;
+    if (req.query.title) {
+        query.title = req.query.title;
     }
-    if(req.body.keywords) {
-        query.keywords = req.body.keywords;
+    if(req.query.keywords) {
+        query.keywords = req.query.keywords;
     }
     const result = await mongodb
       .getDb()

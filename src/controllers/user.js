@@ -5,11 +5,11 @@ const getUsers = async (req, res, next) => {
   console.log("In get users");
   try {
     const query = {};
-    if (req.body.email) {
-      query.email = req.body.email;
+    if (req.query.email) {
+      query.email = req.query.email;
     }
-    if (req.body.password) {
-      query.password = req.body.password;
+    if (req.query.password) {
+      query.password = req.query.password;
     }
     console.log(query);
 
@@ -60,10 +60,10 @@ const getUserByEmail = async (req, res, next) => {
   // console.log(req.params);
   // console.log(req.params._id);
   try {
-    if (!req.body["email"]) {
+    if (!req.query["email"]) {
       console.error("Lack of email error in get user by email");
     }
-    let query = { email: req.body["email"] };
+    let query = { email: req.query["email"] };
     console.log(query);
 
     const result = await mongodb
