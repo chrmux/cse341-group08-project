@@ -130,7 +130,7 @@ const putUsers = async (req, res, next) => {
     try {
         const result = await mongodb.getDb().db('Group08-Project03').collection('Users').findOneAndUpdate(
             {_id: new ObjectId(id)},
-            newData,
+            { $set: newData },
             {returnDocument: 'after'}
         );
         if(result == null){
