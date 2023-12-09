@@ -315,7 +315,7 @@
     "/recipes/{title}": {
       "parameters": [{
         "name": "title",
-        "in": "body",
+        "in": "path",
         "required": "true",
         "description": "name of the recipe",
         "type": "string"
@@ -340,7 +340,7 @@
     "/recipes/{keyword}": {
       "parameters": [{
         "name": "keyword",
-        "in": "body",
+        "in": "path",
         "required": "true",
         "description": "keyword of the recipe",
         "type": "string"
@@ -512,7 +512,7 @@
     "/keywords/{classification}": {
       "parameters": [{
         "name": "classification",
-        "in": "body",
+        "in": "path",
         "required": "true",
         "description": "classification of the keyword",
         "type": "string"
@@ -691,7 +691,7 @@
     "/ingredients/{name}": {
       "parameters": [{
         "name": "name",
-        "in": "body",
+        "in": "path",
         "required": "true",
         "description": "name of the ingredient",
         "type": "string"
