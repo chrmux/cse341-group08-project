@@ -11,7 +11,7 @@ const getRecipes = async (req, res, next) => {
         query.title = req.query.title;
     }
     if(req.query.keyword) {
-        query.keyword = req.query.keyword;
+        query.keywords = req.query.keyword;
     }
     const result = await mongodb
       .getDb()
