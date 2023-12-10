@@ -104,7 +104,7 @@ const deletePhoto = async (req, res) => {
     .deleteOne({ _id: photoId });
   console.log(response);
   if (response.deletedCount > 0) {
-    res.status(200).send();
+    res.status(200).send(response);
   } else {
     res
       .status(500)

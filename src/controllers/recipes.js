@@ -31,7 +31,7 @@ const deleteRecipe = async (req, res) => {
     .deleteOne({ _id: recipeId });
   console.log(response);
   if (response.deletedCount > 0) {
-    res.status(200).send();
+    res.status(200).send(response);
   } else {
     res
       .status(500)
@@ -64,41 +64,57 @@ const getRecipeById = async (req, res, next) => {
   }
 };
 
-const postRecipes = async(req, res) => {
-    const postData = req.body
-    try {
-        const result = await mongodb.getDb().db('Group08-Project03').collection('Recipes').insertOne(postData);
-        res.setHeader('Content-Type', 'application/json').status(201).json(result);
-    } catch (e) {
-        console.log(e);
-        res.status(400).json("Recipes Post Request: Invalid request data found in request body.");
-    }
-}
+const postRecipes = async (req, res) => {
+  const postData = req.body;
+  try {
+    const result = await mongodb
+      .getDb()
+      .db("Group08-Project03")
+      .collection("Recipes")
+      .insertOne(postData);
+    res.setHeader("Content-Type", "application/json").status(201).json(result);
+  } catch (e) {
+    console.log(e);
+    res
+      .status(400)
+      .json(
+        "Recipes Post Request: Invalid request data found in request body."
+      );
+  }
+};
 
-const putRecipes = async(req, res) => {
-    const newData = req.body;
-    const id = req.params.id;
-    try {
-        const result = await mongodb.getDb().db('Group08-Project03').collection('Recipes').findOneAndUpdate(
-            {_id: new ObjectId(id)},
-            { $set: newData },
-            {returnOriginal: false}
-        );
-        if(result == null){
-            res.status(404).json({ error: `Recipes Put Request: No item found with id of ${id}` })
-            return
-        }
-        res.setHeader('Content-Type', 'application/json').status(200).json(result);
-    } catch (e) {
-        console.log(e);
-        res.status(400).json("Recipes Put Request: Invalid request data found in request body.");
+const putRecipes = async (req, res) => {
+  const newData = req.body;
+  const id = req.params.id;
+  try {
+    const result = await mongodb
+      .getDb()
+      .db("Group08-Project03")
+      .collection("Recipes")
+      .findOneAndUpdate(
+        { _id: new ObjectId(id) },
+        { $set: newData },
+        { returnOriginal: false }
+      );
+    if (result == null) {
+      res
+        .status(404)
+        .json({ error: `Recipes Put Request: No item found with id of ${id}` });
+      return;
     }
-}
+    res.setHeader("Content-Type", "application/json").status(200).json(result);
+  } catch (e) {
+    console.log(e);
+    res
+      .status(400)
+      .json("Recipes Put Request: Invalid request data found in request body.");
+  }
+};
 
 module.exports = {
   getRecipes,
   deleteRecipe,
   getRecipeById,
   postRecipes,
-   putRecipes
+  putRecipes,
 };
