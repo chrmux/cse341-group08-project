@@ -6,11 +6,18 @@ const ObjectId = require("mongodb").ObjectId;
 const getRecipes = async (req, res, next) => {
   console.log("In get Recipes");
   try {
+    const query = {};
+    if (req.query.title) {
+        query.title = req.query.title;
+    }
+    if(req.query.keyword) {
+        query.keywords = req.query.keyword;
+    }
     const result = await mongodb
       .getDb()
       .db("Group08-Project03")
       .collection("Recipes")
-      .find();
+      .find(query);
     result.toArray().then((lists) => {
       res.setHeader("Content-Type", "application/json");
       res.status(200).json(lists);

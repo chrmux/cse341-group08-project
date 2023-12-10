@@ -6,8 +6,8 @@ const getIngredients = async (req, res, next) => {
   console.log("In get ingredients");
   try {
     const query = {};
-    if (req.body.name) {
-      query.name = req.body.name;
+    if (req.query.name) {
+      query.name = req.query.name;
     }
 
     const result = await mongodb

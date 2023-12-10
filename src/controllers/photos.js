@@ -6,8 +6,8 @@ const getPhotos = async (req, res, next) => {
   console.log("In get photos");
   try {
     const query = {};
-    if (req.body.title) {
-      query.title = req.body.title;
+    if (req.query.title) {
+      query.title = req.query.title;
     }
 
     const result = await mongodb

@@ -1,14 +1,14 @@
 const mongodb = require("../db/connect");
 const ObjectId = require("mongodb").ObjectId;
 
-const getKeywords = async (req, res, next) => {
-  console.log("In get keywords");
-  try {
-    const query = {};
-    if (req.body.classification) {
-      query.classification = req.body.classification;
-    }
-    console.log(query);
+const getKeywords = async(req, res, next) => {
+    console.log("In get keywords");
+    try {
+        const query = {};
+        if (req.query.classification) {
+            query.classification = req.query.classification;
+        }
+        console.log(query);
 
     const result = await mongodb
       .getDb()

@@ -49,6 +49,26 @@ const saveKeywords = (req, res, next) => {
     });
 };
 
+//Photos
+
+//save photos
+const savePhotos = (req, res, next) => {
+    const validationRule = {
+        title: "required|string",
+        url: "required|string"
+    };
+    validator(req.body, validationRule, {}, (err, status) => {
+        if(!status) {
+            res.status(412).send({
+                success: false,
+                message: "validation failed in save photos",
+                data: err
+            });
+        } else {
+            next();
+        };
+    });
+};
 
 // User?
 
@@ -136,6 +156,7 @@ const haveClassification = (req, res, next) => {
 module.exports = {
     saveRecipe,
     saveKeywords,
+    savePhotos,
     saveIngredients,
     have_id,
     haveName,
